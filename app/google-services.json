@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "748458459188",
+    "project_id": "preemiepedia-1ae02",
+    "storage_bucket": "preemiepedia-1ae02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748458459188:android:95a11c8b5c6361066c8a61",
+        "android_client_info": {
+          "package_name": "com.appsnipp.homedesigns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748458459188-kdjof1ftocghr7tgcanbvol4q8p86207.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgl40jCaVQfmZgGOAiDr2zOBSXJUUrflE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748458459188-kdjof1ftocghr7tgcanbvol4q8p86207.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
