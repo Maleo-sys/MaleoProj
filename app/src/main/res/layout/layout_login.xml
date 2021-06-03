@@ -21,7 +21,7 @@
         style="@style/viewParent"
         android:text="Login"
         android:textSize="@dimen/headerTextSize"
-        android:textColor="blackTextColor"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
 <!--    <android.support.design.widget.TextInputLayout-->
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textColor="blackTextColor"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:text="Already Have an Account?\nLogin Now."/>
 
@@ -71,6 +71,7 @@
         android:padding="20dp">
 
         <ImageView
+            android:id="@+id/facebook.button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -79,6 +80,7 @@
             android:src="@drawable/facebook_button" />
 
         <ImageView
+            android:id="@+id/google_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

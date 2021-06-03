@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/selectableItemBackground">
+
+    <TextView
+        style="@style/viewParent.headerText"
+        android:layout_width="match_parent"
+        android:text="כיצד נשמור על הפגים שלנו בימי המגפה?"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:src="@drawable/data_center_main_article_pic" />
+
+    <TextView
+        style="@style/miniTitle"
+        android:layout_marginTop="5dp"
+        android:maxLines="2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text='פגים בצל הקורונה: לרגל חודש המודעות הבינלאומי לפגים, מפרסם "הפורום למען הפגים" את דו"ח מצב הפגים, אשר מתמקד השנה בהשלכות של משבר הקורונה'
+        android:textColor="@color/featuredNewsContentColor" />
+</LinearLayout>

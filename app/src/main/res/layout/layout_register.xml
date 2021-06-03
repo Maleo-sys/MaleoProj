@@ -21,7 +21,7 @@
         style="@style/viewParent"
         android:text="Register"
         android:textSize="@dimen/headerTextSize"
-        android:textColor="blackTextColor"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
 
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textColor="blackTextColor"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:text="Already Have an Account?\nLogin Now."/>
 

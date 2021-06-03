@@ -6,7 +6,7 @@
     tools:context="com.appsnipp.homedesigns.LoginActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="gradientLightOrange">
+    android:background="@color/design_default_color_surface">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

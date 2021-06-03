@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigationContact"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="צור קשר" />
+
+    <item
+        android:id="@+id/navigationDataCenter"
+        android:icon="@drawable/navigation_data_center_library"
+        android:title="מאגר הידע" />
+
+    <item
+        android:id="@+id/navigationFollowUp"
+        android:icon="@drawable/navigation_followup_graph"
+        android:title="מעקב" />
+
+
+    <item
+        android:id="@+id/navigationPersonalSpace"
+        android:icon="@drawable/ic_user"
+        android:title="אזור אישי" />
+
+</menu>

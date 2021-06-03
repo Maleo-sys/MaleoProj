@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="40dp"
+    android:gravity="right">
+
+    <ImageView
+        android:id="@+id/newsThumbnailImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/personal_space_baby" />
+
+    <TextView
+        android:id="@+id/newsTitleTextView"
+        style="@style/viewParent.headerText"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/newsThumbnailImageView"
+        android:ellipsize="end"
+        android:gravity="right"
+        android:maxLines="2"
+        android:text="זאת כותרת של כתבה חדשה? כן"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/newsDetailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newsTitleTextView"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/newsThumbnailImageView"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="כפי שמקודם ראינו כותרת לכתבה חדשה, כעת אנחנו קוראים תמצית עליה"
+        android:textColor="@color/featuredNewsContentColor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="5dp"
+        android:text="קרא עוד"
+        android:textColor="#019AE8"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/newsThumbnailImageView"
+        android:gravity="right"
+        android:text="פורסם: לפני שעה"
+        android:textColor="#8E909A"
+        android:textSize="11sp" />
+
+</RelativeLayout>
