@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +8,7 @@
     tools:context="com.appsnipp.homedesigns.MainActivity"
     tools:showIn="@layout/app_bar_main"
     style="@style/parent.contentLayout"
-    android:background="#00000000">
+    android:background="@drawable/orange_background">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -19,18 +19,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp">
 
                 <TextView
+                    android:id="@+id/textView3"
                     style="@style/viewParent.headerText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="שלום, \n בן"
+                    android:text="שלום, \nאורח"
                     android:textSize="36sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -39,17 +40,58 @@
                     tools:layout_conversion_absoluteWidth="91dp" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
+                    android:id="@+id/google_icon"
+                    android:layout_width="201dp"
+                    android:layout_height="165dp"
                     android:layout_marginStart="16dp"
                     android:adjustViewBounds="true"
                     android:src="@drawable/personal_space_main_picture"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.307" />
 
-            </android.support.constraint.ConstraintLayout>
+                <com.sanojpunchihewa.glowbutton.GlowButton
+                    android:id="@+id/sign_btn"
+                    android:layout_width="163dp"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="DisplayLoginPage"
+                    android:text="התחבר"
+                    android:visibility="visible"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    app:buttonColor="@color/colorPrimaryDark"
+                    app:cornerRadius="30dp"
+                    app:glowColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/google_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    app:pressedGlowSize="4dp"
+                    app:unpressedGlowSize="2dp" />
+
+                <com.sanojpunchihewa.glowbutton.GlowButton
+                    android:id="@+id/signout_btn"
+                    android:layout_width="163dp"
+                    android:layout_height="49dp"
+                    android:onClick="sign_out"
+                    android:text="התנתק"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:visibility="invisible"
+                    app:buttonColor="@color/colorPrimaryDark"
+                    app:cornerRadius="30dp"
+                    app:glowColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    app:pressedGlowSize="4dp"
+                    app:unpressedGlowSize="2dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +105,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -71,10 +113,13 @@
                         app:cardPreventCornerOverlap="true">
 
                         <RelativeLayout
+                            android:id="@+id/AppointmentsCard"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/home_gradient_maths"
                             android:minHeight="100dp"
+                            android:onClick="DisplayAppointmentsDialog"
+
                             android:padding="10dp">
 
                             <ImageView
@@ -86,7 +131,8 @@
                                 android:layout_alignParentRight="false"
                                 android:layout_marginLeft="1dp"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/personal_space_next_appointment_doctor" />
+                                android:src="@drawable/personal_space_next_appointment_doctor"
+                                />
 
                             <TextView
                                 android:id="@+id/textViewSub1Title"
@@ -97,13 +143,16 @@
                                 android:text="מפגשים\nקרובים" />
 
                         </RelativeLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/MeasurementsCard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         app:cardCornerRadius="15dp"
+                        android:onClick="DisplayMeasurementsDialog"
+
                         app:cardPreventCornerOverlap="true">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
@@ -111,9 +160,9 @@
                             android:layout_height="match_parent"
                             android:minHeight="100dp"
                             android:padding="10dp"
-                            gl:start_color="@color/gradientLightOrange2"
                             gl:end_color="@color/gradientLightGreen"
-                            gl:orientation="LEFT_RIGHT">
+                            gl:orientation="LEFT_RIGHT"
+                            gl:start_color="@color/gradientLightOrange2">
 
                             <ImageView
                                 android:id="@+id/latest_index_img"
@@ -133,10 +182,10 @@
 
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -171,7 +220,7 @@
 
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -182,7 +231,7 @@
                     android:orientation="vertical">
 
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -228,9 +277,9 @@
                                 tools:layout_editor_absoluteY="280dp" />
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -238,7 +287,7 @@
                         app:cardPreventCornerOverlap="true">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
-                            android:layout_width="171dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:minHeight="100dp"
                             android:padding="10dp"
@@ -263,13 +312,17 @@
                                 android:text="תזונה" />
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
-                    </android.support.v7.widget.CardView>
-                    <android.support.v7.widget.CardView
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         app:cardCornerRadius="15dp"
-                        app:cardPreventCornerOverlap="true">
+                        app:cardPreventCornerOverlap="true"
+                        android:onClick="DisplayNotifications"
+
+
+                        >
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -290,15 +343,15 @@
                                 android:layout_marginLeft="-14dp"
                                 android:maxHeight="90dp"
                                 android:src="@drawable/personal_space_notification" />
-
                             <TextView
                                 android:id="@+id/textViewSub6Title"
                                 style="@style/viewParent.headerText.HomeCardTitle"
                                 android:layout_alignParentRight="true"
                                 android:text="ניהול\nהתראות" />
 
+
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </LinearLayout>
 
@@ -306,4 +359,4 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

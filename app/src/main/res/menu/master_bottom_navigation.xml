@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:id="@+id/navigationContact"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="צור קשר" />
-
     <item
         android:id="@+id/navigationDataCenter"
         android:icon="@drawable/navigation_data_center_library"
@@ -16,6 +10,10 @@
         android:icon="@drawable/navigation_followup_graph"
         android:title="מעקב" />
 
+    <item
+        android:id="@+id/navigationAppointments"
+        android:icon="@drawable/ic_baseline_appointments"
+        android:title="מפגשים" />
 
     <item
         android:id="@+id/navigationPersonalSpace"

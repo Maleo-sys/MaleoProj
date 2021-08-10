@@ -19,6 +19,7 @@
     <color name="miniTitleColor">#6F6A6A</color>
     <color name="bottomNavigationBackground">#F7F7F7</color>
     <color name="contentStatusBar">#f8cbb3</color>
+    <color name="colorBackground">#EDDDD5</color>
 
     <!--gradient colors-->
     <color name="gradientOrange">#FF416C</color>
@@ -33,6 +34,9 @@
     <color name="black">#000000</color>
     <color name="miniTitle">#2A2E43</color>
     <color name="featuredNewsContentColor">#8E909A</color>
+    <color name="colorTextInputBackground">#F7F7F7</color>
+    <color name="md_black_1000">#000000</color>
+    <color name="md_cyan_A700">#00B8D4</color>
 
 
     <!--colors for nongradientversion-->

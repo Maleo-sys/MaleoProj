@@ -1,16 +1,11 @@
 package com.appsnipp.homedesigns;
 
 import android.content.Intent;
-//import android.support.annotation.NonNull;
-//import android.support.design.widget.BottomNavigationView;
-//import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DataCenter extends AppCompatActivity {
 
@@ -42,12 +37,16 @@ public class DataCenter extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case  R.id.navigationContact:
+                    case  R.id.navigationAppointments:
+                        startActivity(new Intent(getApplicationContext(), AppointmentsCenter.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;
             }
         });
+
+
 
     }
 }

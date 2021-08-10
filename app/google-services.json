@@ -1,33 +1,42 @@
 {
   "project_info": {
-    "project_number": "748458459188",
-    "project_id": "preemiepedia-1ae02",
-    "storage_bucket": "preemiepedia-1ae02.appspot.com"
+    "project_number": "723567238566",
+    "firebase_url": "https://preemiepedia-80e87-default-rtdb.firebaseio.com",
+    "project_id": "preemiepedia-80e87",
+    "storage_bucket": "preemiepedia-80e87.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:748458459188:android:95a11c8b5c6361066c8a61",
+        "mobilesdk_app_id": "1:723567238566:android:c207f70927933cb0870367",
         "android_client_info": {
           "package_name": "com.appsnipp.homedesigns"
         }
       },
       "oauth_client": [
         {
-          "client_id": "748458459188-kdjof1ftocghr7tgcanbvol4q8p86207.apps.googleusercontent.com",
+          "client_id": "723567238566-7kkfo63ivco0q8rr0hv6k92apd2qt6c7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appsnipp.homedesigns",
+            "certificate_hash": "02b9789995f736120ed890a528b8915b13004e26"
+          }
+        },
+        {
+          "client_id": "723567238566-6gm6g3ftvvb5b76mokl2om9pei3l3p8g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCgl40jCaVQfmZgGOAiDr2zOBSXJUUrflE"
+          "current_key": "AIzaSyCCcafhyNCuibt6j9o3z0HiQmRPHoz1Zm0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "748458459188-kdjof1ftocghr7tgcanbvol4q8p86207.apps.googleusercontent.com",
+              "client_id": "723567238566-6gm6g3ftvvb5b76mokl2om9pei3l3p8g.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

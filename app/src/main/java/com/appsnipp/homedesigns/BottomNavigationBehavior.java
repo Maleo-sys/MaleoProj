@@ -3,15 +3,12 @@ package com.appsnipp.homedesigns;
 
 
 import android.content.Context;
-//import android.support.design.widget.BottomNavigationView;
-//import android.support.design.widget.CoordinatorLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
-
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavigationBehavior extends CoordinatorLayout.Behavior<BottomNavigationView> {
 

@@ -1,0 +1,22 @@
+<!-- bottom_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/height_measurement"
+        android:icon="@drawable/ic_baseline_height_24"
+        android:title="גובה"
+        />
+    <item
+        android:id="@+id/head_measurement"
+        android:icon="@drawable/ic_head"
+        android:title="היקף ראש"
+        />
+    <item
+        android:id="@+id/weight_measurement"
+        android:icon="@drawable/ic_baseline_fitness_center_24"
+        android:title="משקל"
+         />
+
+</menu>
+

@@ -2,13 +2,24 @@
     <string name="app_name">Maleo</string>
 
     <string name="hello_user_content_main">שלום, \n בן</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="hint_username">שם משתמש</string>
+    <string name="hint_password">סיסמא</string>
+    <string name="text_forgot_password">שכחתם סיסמא?</string>
+    <string name="button_sign_in">התחברו</string>
+    <string name="text_signin_social_media">או שתתחברו באמצעות הרשתות החברתיות:</string>
+    <string name="text_signin_signup">אין לכם משתמש? <b>הרשמו כאן</b></string>
+    <string name="hint_confirm_password">אימות סיסמא</string>
+    <string name="text_signup_terms">בעת ההרשמה אתם מאשרים את <b>תנאי השימוש</b></string>
+    <string name="hint_phone">מספר סלולרי</string>
+    <string name="hint_email">אימייל</string>
+    <string name="text_signup_social_media">או שתרשמו באמצעות הרשתות החברתיות:</string>
+    <string name="text_signup_message">הרשמו לאתר! זה לגמרי בחינם :) </string>
+    <string name="button_sign_up">הרשמו</string>
+    <string name="add_picture_signup">הוסף תמונה</string>
+    <string name="lost_password_image">אעזור לכם לשחזר את חשבונכם</string>
+    <string name="button_send">שחזר</string>
+    <string name="text_forgot_password_message">נשלח לכם קישור לשחזור הסיסמא</string>
+    <string name="text_forgot_password_title">שכחתם את הסיסמא? אל דאגה!</string>
+
+
 </resources>
