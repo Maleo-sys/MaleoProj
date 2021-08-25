@@ -4,24 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appsnipp.homedesigns.MainActivity"
-    android:background="@color/contentBodyColor">
+    android:background="@color/cardColorRed"
+    tools:context="com.appsnipp.homedesigns.MainActivity">
 
-    <include
-        layout="@layout/content_main" />
+    <include layout="@layout/content_main" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
         android:foreground="?attr/selectableItemBackground"
-        app:menu="@menu/master_bottom_navigation"
         app:elevation="10dp"
-        app:labelVisibilityMode="labeled"
+        app:itemBackground="@color/bottomNavigationBackground"
         app:itemIconTint="@color/bottom_navigation_color"
         app:itemTextColor="@color/bottom_navigation_color"
-        app:itemBackground="@color/bottomNavigationBackground"/>
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/master_bottom_navigation" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
