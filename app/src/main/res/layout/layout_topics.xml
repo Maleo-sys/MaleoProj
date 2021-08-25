@@ -18,6 +18,8 @@
     <TextView
         style="@style/miniTitle"
         android:maxLines="2"
-        android:text="קטגוריה" />
+        android:text="קטגוריה"
+        android:textColor="@color/whiteTextColor" />
+
 
 </LinearLayout>

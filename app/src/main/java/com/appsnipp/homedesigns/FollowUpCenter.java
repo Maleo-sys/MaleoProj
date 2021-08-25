@@ -20,6 +20,8 @@ private static final String TAG = "FollowUpCenter";
     private AAChartView aaChartView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_follow_up_center);
