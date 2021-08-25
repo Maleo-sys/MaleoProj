@@ -6,14 +6,14 @@
     <string name="hint_password">סיסמא</string>
     <string name="text_forgot_password">שכחתם סיסמא?</string>
     <string name="button_sign_in">התחברו</string>
-    <string name="text_signin_social_media">או שתתחברו באמצעות הרשתות החברתיות:</string>
+    <string name="text_signin_social_media">או שתתחברו באמצעות Google</string>
     <string name="text_signin_signup">אין לכם משתמש? <b>הרשמו כאן</b></string>
     <string name="hint_confirm_password">אימות סיסמא</string>
     <string name="text_signup_terms">בעת ההרשמה אתם מאשרים את <b>תנאי השימוש</b></string>
     <string name="hint_phone">מספר סלולרי</string>
     <string name="hint_email">אימייל</string>
-    <string name="text_signup_social_media">או שתרשמו באמצעות הרשתות החברתיות:</string>
-    <string name="text_signup_message">הרשמו לאתר! זה לגמרי בחינם :) </string>
+    <string name="text_signup_social_media">או שתרשמו באמצעות Google:</string>
+    <string name="text_signup_message">הרשמו לאפליקציה! זה לגמרי בחינם :) </string>
     <string name="button_sign_up">הרשמו</string>
     <string name="add_picture_signup">הוסף תמונה</string>
     <string name="lost_password_image">אעזור לכם לשחזר את חשבונכם</string>

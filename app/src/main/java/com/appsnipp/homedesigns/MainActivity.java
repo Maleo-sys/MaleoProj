@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        else{
+            hello_name = findViewById(R.id.hello_name);
+            hello_name.setText("שלום, \nאורח");
+
+        }
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);

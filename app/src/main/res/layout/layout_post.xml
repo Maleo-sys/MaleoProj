@@ -2,7 +2,9 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginTop="40dp"
-    android:gravity="right">
+    android:gravity="right"
+    android:background="@drawable/article_rounded_border">
+>
 
     <ImageView
         android:id="@+id/newsThumbnailImageView"
@@ -20,7 +22,7 @@
         android:ellipsize="end"
         android:gravity="right"
         android:maxLines="2"
-        android:text="זאת כותרת של כתבה חדשה? כן"
+        android:text="כותרת של כתבה חדשה"
         android:textSize="15sp" />
 
     <TextView
