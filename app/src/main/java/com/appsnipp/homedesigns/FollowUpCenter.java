@@ -94,9 +94,9 @@ private static final String TAG = "FollowUpCenter";
     private AAChartModel configureWeightChartModel(){
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
-                .title("אחוזון משקל")
-                .subtitle("עפי מידע מאתר שקרכלשהו")
-                .backgroundColor("#FF7765")
+                .title(" אחוזון משקל")
+                .subtitle("עפי מידע מאתר ")
+                .backgroundColor("#9BF6FF")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
@@ -128,8 +128,8 @@ private static final String TAG = "FollowUpCenter";
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון גובה")
-                .subtitle("עפי מידע מאתר שקרכלשהו")
-                .backgroundColor("#000000")
+                .subtitle("עפי מידע מאתר ")
+                .backgroundColor("#BDB2FF")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
@@ -155,8 +155,8 @@ private static final String TAG = "FollowUpCenter";
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("היקף הראש")
-                .subtitle("היקף בסנטימטרים, עפי מידע מאתר שקרכלשהו")
-                .backgroundColor("#ffffff")
+                .subtitle("היקף בסנטימטרים, עפי מידע מאתר")
+                .backgroundColor("#CAFFBF")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
