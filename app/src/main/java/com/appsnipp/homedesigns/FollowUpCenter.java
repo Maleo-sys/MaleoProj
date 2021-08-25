@@ -102,18 +102,50 @@ private static final String TAG = "FollowUpCenter";
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון משקל")
-                .subtitle("עפי מידע מאתר שקרכלשהו")
+                .subtitle("משקל בגרמים, עפי מידע מארגון הבריאות העולמי")
                 .categories(new String[]{"month","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
-                .backgroundColor("#FF7765")
+                .backgroundColor("#00ccff")
 
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
                         new AASeriesElement()
+                                .name("my baby")
+                                .color("#000067")
+                                .size(0.2)
+                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
+                                .data(new Object[]{
+                                        3.027282,
+                                        4.080792,
+                                        5.117754,
+                                        5.888058,
+                                        6.484777,
+                                        6.966941,
+                                        7.366195,
+                                        7.706413,
+                                        8.003205,
+                                        8.26946,
+                                        8.5139,
+                                        8.742959,
+                                        8.960956,
+                                        9.170505,
+                                        9.373665,
+                                        9.571948,
+                                        9.7667,
+                                        9.958406,
+                                        10.14755,
+                                        10.33431,
+                                        10.51961,
+                                        10.70383,
+                                        10.88716,
+                                        11.06946,
+                                        11.25065,
+                                }),
+                        new AASeriesElement()
                                 .name("98%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#fffe00")
+                                .color("#ff0000")
                                 .data(new Object[]{
                                 4.419354,
                                 5.798331,
@@ -241,7 +273,7 @@ private static final String TAG = "FollowUpCenter";
                                 .name("2%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#fffe00")
+                                .color("#ff0000")
                                 .data(new Object[]{
                                 2.459312,
                                 3.39089,
@@ -268,14 +300,7 @@ private static final String TAG = "FollowUpCenter";
                                 9.371554,
                                 9.522741,
                                 9.672527,
-                        }),
-                        new AASeriesElement()
-                                .name("my baby")
-                                .color("#000000")
-                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
-                                .data(new Object[]{3.5,4.2})
-                                .size(0.2)
-
+                        })
                 });
         this.CurrChartModel = aaChartModel;
 
@@ -286,17 +311,46 @@ private static final String TAG = "FollowUpCenter";
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון גובה")
-                .subtitle("עפי מידע מאתר שקרכלשהו")
+                .subtitle("גובה בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
                 .categories(new String[]{"month","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
-                .backgroundColor("#000000")
+                .backgroundColor("#00ccff")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
                         new AASeriesElement()
+                                .name("my baby")
+                                .color("#000067")
+                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
+                                .data(new Object[]{48.60732,
+                                53.41147,
+                                57.0756,
+                                60.0503,
+                                62.48254,
+                                64.4784,
+                                66.18,
+                                67.70013,
+                                69.1118,
+                                70.45564,
+                                71.74005,
+                                72.96769,
+                                74.14605,
+                                75.28228,
+                                76.37879,
+                                77.43914,
+                                78.46814,
+                                79.46765,
+                                80.43942,
+                                81.38338,
+                                82.30162,
+                                83.19621,
+                                84.06859,
+                                84.92082,
+                                85.75545,}),
+                        new AASeriesElement()
                                 .name("98%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#fffe00")
+                                .color("#ff0000")
                                 .data(new Object[]{
                                 53.67041,
                                 58.61749,
@@ -424,7 +478,7 @@ private static final String TAG = "FollowUpCenter";
                                 .name("2%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#fffe00")
+                                .color("#ff0000")
                                 .data(new Object[]{
                                 46.09799,
                                 50.83131,
@@ -451,12 +505,7 @@ private static final String TAG = "FollowUpCenter";
                                 80.17925,
                                 80.95077,
                                 81.70586,
-                        }),
-                        new AASeriesElement()
-                                .name("my baby")
-                                .color("#000000")
-                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
-                                .data(new Object[]{53,54})
+                        })
                 });
         this.CurrChartModel = aaChartModel;
 
@@ -468,15 +517,45 @@ private static final String TAG = "FollowUpCenter";
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("היקף הראש")
-                .subtitle("היקף בסנטימטרים, עפי מידע מאתר")
-                .backgroundColor("#CAFFBF")
+                .subtitle("היקף בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
+                .backgroundColor("#00ccff")
                 .dataLabelsEnabled(false)
+                .categories(new String[]{"month","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
                         new AASeriesElement()
+                                .name("my baby")
+                                .color("#000067")
+                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
+                                .data(new Object[]{33.60502,
+                                36.48819,
+                                38.33754,
+                                39.71613,
+                                40.82636,
+                                41.74325,
+                                42.5073,
+                                43.14851,
+                                43.69022,
+                                44.15237,
+                                44.55065,
+                                44.89654,
+                                45.19953,
+                                45.46778,
+                                45.70745,
+                                45.92456,
+                                46.12259,
+                                46.30582,
+                                46.47646,
+                                46.63699,
+                                46.78927,
+                                46.93407,
+                                47.07289,
+                                47.2058,
+                                47.3334,}),
+                        new AASeriesElement()
                                 .name("98%")
                                 .size(0.2)
-                                .color("#fffe00")
+                                .color("#ff0000")
                                 .marker(new AAMarker().radius(0f))
                                 .data(new Object[]{
                                 37.0023239,
@@ -605,7 +684,7 @@ private static final String TAG = "FollowUpCenter";
                                 .name("2%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#fffe00")
+                                .color("#ff0000")
                                 .data(new Object[]{
                                 31.92128,
                                 34.94019,
@@ -632,12 +711,7 @@ private static final String TAG = "FollowUpCenter";
                                 45.28376,
                                 45.40901,
                                 45.52915,
-                        }),
-                        new AASeriesElement()
-                                .name("my baby")
-                                .color("#000000")
-                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
-                                .data(new Object[]{36,37})
+                        })
                 });
         this.CurrChartModel = aaChartModel;
 
