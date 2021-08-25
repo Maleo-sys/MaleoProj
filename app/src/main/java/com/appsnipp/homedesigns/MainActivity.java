@@ -1,12 +1,10 @@
 package com.appsnipp.homedesigns;
 
-import android.app.Notification;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -26,17 +24,13 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import static com.appsnipp.homedesigns.App.appointments_channel_id;
-import static com.appsnipp.homedesigns.App.index_channel_id;
 
 public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
@@ -47,14 +41,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("myTag", "This is my message");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hello_name = findViewById(R.id.textView3);
         sign_button = findViewById(R.id.sign_btn);
+        hello_name = findViewById(R.id.hello_name);
+        hello_name.setText("שלום, \n");
+
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() != null) {
+        if (mAuth.getCurrentUser() != null) {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             databaseUsers = database.getReference("users");
             String id = mAuth.getCurrentUser().getUid();
@@ -94,22 +92,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.navigationFollowUp:
                         startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.navigationPersonalSpace:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.navigationDataCenter:
                         startActivity(new Intent(getApplicationContext(), DataCenter.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
-                    case  R.id.navigationAppointments:
+                    case R.id.navigationAppointments:
                         startActivity(new Intent(getApplicationContext(), AppointmentsCenter.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
@@ -118,18 +116,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     @Override
-    public void onStart(){
+    public void onResume() {
+        super.onResume();
+        Log.d("myTag", "resumed");
+
+    }
+
+    @Override
+    public void onStart() {
         super.onStart();
         if (mAuth.getCurrentUser() != null) {
+
             sign_button.setText("התנתק");
+
 
         } else {
             sign_button.setText("התחבר");
         }
     }
 
-//    Dialogs Zone
+    //    Dialogs Zone
     public void DisplayAppointmentsDialog(View view) {
         new FancyGifDialog.Builder(this)
                 .setTitle("המפגשים הקרובים (חודש מהיום)")
@@ -172,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 })
-                    .OnNegativeClicked(new FancyGifDialogListener() {
+                .OnNegativeClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
                     }
@@ -201,21 +209,21 @@ public class MainActivity extends AppCompatActivity {
     public void DisplayLoginPage(View view) {
         if (mAuth.getCurrentUser() != null) {
             sign_out();
-        }
-        else {
+        } else {
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             overridePendingTransition(0, 0);
         }
     }
 
 
-    public void sign_out(){
+    public void sign_out() {
         mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 mAuth.signOut();
                 hello_name.setText("שלום, \nאורח");
-                Toast.makeText(MainActivity.this,"U Sign out successfully",Toast.LENGTH_LONG).show();
+
+                Toast.makeText(MainActivity.this, "Signed Out Successfully.", Toast.LENGTH_LONG).show();
                 onStart();
             }
         });
