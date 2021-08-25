@@ -9,7 +9,7 @@ public class User {
     private String name;
     private String email;
     private String Uid;
-    private List<ContactsContract.CommonDataKinds.Relation> children = new ArrayList<>();
+    private ArrayList<Baby> children;
 
     public User(){
     }
@@ -22,7 +22,7 @@ public class User {
     }
 
     //retrieve info from database
-    public User(String email, String name, String Uid, List<ContactsContract.CommonDataKinds.Relation> children){
+    public User(String email, String name, String Uid, ArrayList<Baby> children){
         this.name = name;
         this.email = email;
         this.Uid = Uid;
@@ -44,11 +44,11 @@ public class User {
         this.email = email;
     }
 
-    public List<ContactsContract.CommonDataKinds.Relation> getItems() {
+    public ArrayList<Baby> getItems() {
         return children;
     }
 
-    public void setItems(List<ContactsContract.CommonDataKinds.Relation> items) {
+    public void setItems(ArrayList<Baby> items) {
         this.children = items;
     }
 
