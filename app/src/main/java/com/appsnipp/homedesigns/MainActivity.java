@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     public TextView hello_name;
-    private GlowButton sign_button;
+    private GlowButton sign_button, choose_baby;
     private DatabaseReference databaseUsers;
 
     @Override
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sign_button = findViewById(R.id.sign_btn);
+        choose_baby = findViewById(R.id.choose_child);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
 
