@@ -3,15 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/drawable/article_rounded_border.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_height_24.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/layout/activity_appointments_center.xml" value="0.1078125" />
         <entry key="app/src/main/res/layout/activity_follow_up_center.xml" value="0.5379426644182125" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2868369351669941" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.2724770642201835" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/follow_up_content.xml" value="0.3098958333333333" />

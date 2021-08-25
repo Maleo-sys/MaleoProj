@@ -12,7 +12,6 @@
     tools:context=".LoginActivity">
 
 
-    <!--            android:onClick="onClick"-->
 
 
     <ImageView
