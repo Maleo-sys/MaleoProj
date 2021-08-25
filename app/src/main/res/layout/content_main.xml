@@ -71,22 +71,22 @@
                     app:unpressedGlowSize="2dp" />
 
                 <com.sanojpunchihewa.glowbutton.GlowButton
-                    android:id="@+id/signout_btn"
-                    android:layout_width="163dp"
-                    android:layout_height="49dp"
-                    android:onClick="sign_out"
-                    android:text="התנתק"
+                    android:id="@+id/choose_child"
+                    android:layout_width="71dp"
+                    android:layout_height="37dp"
+                    android:text="בחר ילד"
                     android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:visibility="invisible"
+                    android:textSize="14sp"
+                    android:visibility="visible"
                     app:buttonColor="@color/colorPrimaryDark"
                     app:cornerRadius="30dp"
                     app:glowColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/hello_name"
+                    app:layout_constraintVertical_bias="0.0"
                     app:pressedGlowSize="4dp"
                     app:unpressedGlowSize="2dp" />
 
