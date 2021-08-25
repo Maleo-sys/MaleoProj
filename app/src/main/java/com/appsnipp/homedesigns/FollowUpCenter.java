@@ -104,7 +104,7 @@ private static final String TAG = "FollowUpCenter";
                 .title("אחוזון משקל")
                 .subtitle("משקל בגרמים, עפי מידע מארגון הבריאות העולמי")
                 .categories(new String[]{"month","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
-                .backgroundColor("#00ccff")
+                .backgroundColor("#CDDAFD")
 
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
@@ -313,7 +313,7 @@ private static final String TAG = "FollowUpCenter";
                 .title("אחוזון גובה")
                 .subtitle("גובה בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
                 .categories(new String[]{"month","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
-                .backgroundColor("#00ccff")
+                .backgroundColor("#CDDAFD")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
@@ -518,7 +518,7 @@ private static final String TAG = "FollowUpCenter";
                 .chartType(AAChartType.Line)
                 .title("היקף הראש")
                 .subtitle("היקף בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
-                .backgroundColor("#00ccff")
+                .backgroundColor("#CDDAFD")
                 .dataLabelsEnabled(false)
                 .categories(new String[]{"month","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
                 .yAxisGridLineWidth(0f)
