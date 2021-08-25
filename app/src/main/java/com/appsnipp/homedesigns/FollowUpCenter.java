@@ -25,6 +25,8 @@ private static final String TAG = "FollowUpCenter";
     private Object[] length;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_follow_up_center);
@@ -103,6 +105,7 @@ private static final String TAG = "FollowUpCenter";
                 .subtitle("עפי מידע מאתר שקרכלשהו")
                 .categories(new String[]{"month","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
                 .backgroundColor("#FF7765")
+
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
@@ -465,8 +468,8 @@ private static final String TAG = "FollowUpCenter";
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("היקף הראש")
-                .subtitle("היקף בסנטימטרים, עפי מידע מאתר שקרכלשהו")
-                .backgroundColor("#ffffff")
+                .subtitle("היקף בסנטימטרים, עפי מידע מאתר")
+                .backgroundColor("#CAFFBF")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{

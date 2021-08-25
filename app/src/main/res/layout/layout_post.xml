@@ -2,7 +2,9 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginTop="40dp"
+    android:background="@drawable/article_rounded_border"
     android:gravity="right">
+    >
 
     <ImageView
         android:id="@+id/newsThumbnailImageView"
@@ -20,7 +22,9 @@
         android:ellipsize="end"
         android:gravity="right"
         android:maxLines="2"
-        android:text="זאת כותרת של כתבה חדשה? כן"
+        android:text="כותרת של כתבה חדשה"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="15sp" />
 
     <TextView
@@ -34,7 +38,8 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="כפי שמקודם ראינו כותרת לכתבה חדשה, כעת אנחנו קוראים תמצית עליה"
-        android:textColor="@color/featuredNewsContentColor" />
+        android:textColor="@color/whiteTextColor" />
+    />
 
     <TextView
         android:layout_width="wrap_content"

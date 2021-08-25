@@ -11,6 +11,7 @@ public class DataCenter extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_center);
         // Initialize and assign variable

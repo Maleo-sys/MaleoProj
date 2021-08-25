@@ -24,6 +24,7 @@ public class AppointmentsCenter extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments_center);
         // Initialize and assign variable
