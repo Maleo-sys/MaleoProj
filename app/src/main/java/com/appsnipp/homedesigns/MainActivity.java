@@ -29,6 +29,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     public TextView hello_name;
-    private GlowButton sign_button, choose_baby;
+    private GlowButton sign_button;
+    private Spinner choose_baby;
     private DatabaseReference databaseUsers;
 
     @Override
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sign_button = findViewById(R.id.sign_btn);
-        choose_baby = findViewById(R.id.choose_child);
+        choose_baby = (Spinner) findViewById(R.id.choose_child);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
 
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
             sign_button.setText("התנתק");
             choose_baby.setVisibility(View.VISIBLE);
+
 
 
         } else {

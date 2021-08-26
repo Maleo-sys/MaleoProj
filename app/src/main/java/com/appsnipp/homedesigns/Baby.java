@@ -4,28 +4,43 @@ import android.provider.ContactsContract;
 import android.widget.DatePicker;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Baby {
     private String name;
     private String gender;
     private int age_by_week;
+    private int week_number_of_birth;
     private int adj_age;
-    private DatePicker birth_date;
+    private Calendar birth_date;
     private ArrayList<Scale> scales;
 
 
     public Baby(){
     }
 
+    //send data at register
+    public Baby(String name, String gender, int age_by_week, int week_number_of_birth, Scale first_scale){
+        this.name = name;
+        this.gender = gender;
+        this.age_by_week = age_by_week;
+        this.week_number_of_birth = week_number_of_birth;
+        this.scales.add(first_scale);
+    }
 
-    public Baby(String name, String gender, int age_by_week, ArrayList<Scale> scales){
+    //retrieve info from database
+    public Baby(String name, String gender, ArrayList<Scale> scales){
     this.name = name;
     this.gender = gender;
-    this.age_by_week = age_by_week;
-    this.adj_age = 40 - age_by_week;
     this.scales = scales;
+
+
+//    Calendar today = Calendar.getInstance();
+//    this.age_by_week = age_by_week;
+//        this.adj_age = age_by_week - (40 - week_number_of_birth);
     }
+
 
     // Getters and Setters
     public int getAdj_age() {
@@ -67,8 +82,6 @@ public class Baby {
     public void AddScale(Scale scale){
         this.scales.add(scale);
     }
-//    public void setScales(List<ContactsContract.CommonDataKinds.Relation> scales) {
-//        this.scales = scales;
-//    }
+
 }
 

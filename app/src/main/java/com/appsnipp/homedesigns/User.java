@@ -19,6 +19,7 @@ public class User {
         this.name = name;
         this.email = email;
         this.Uid = Uid;
+        this.children = new ArrayList<Baby>();
     }
 
     //retrieve info from database
