@@ -193,10 +193,13 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
 
             sign_button.setText("התנתק");
+            choose_baby.setVisibility(View.VISIBLE);
 
 
         } else {
             sign_button.setText("התחבר");
+            choose_baby.setVisibility(View.GONE);
+
         }
     }
 
