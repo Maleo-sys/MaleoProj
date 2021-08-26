@@ -95,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+
                                         Toast.makeText(RegisterActivity.this, "user saved!", Toast.LENGTH_SHORT).show();
                                     }
                                 }

@@ -32,6 +32,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -172,7 +173,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = baby_name.getText().toString();
-                String age = child_age_by_weeks.getText().toString();
+                String age_by_weeks_str = child_age_by_weeks.getText().toString();
+                DatePicker bdaypick = (DatePicker)findViewById(R.id.birth_date_picker); // initiate a date picker
+                int day = bdaypick.getDayOfMonth(); // get the selected day of the month
+
+                Toast.makeText(MainActivity.this, day, Toast.LENGTH_SHORT).show();
+
                 dialog.dismiss();
             }
         });
