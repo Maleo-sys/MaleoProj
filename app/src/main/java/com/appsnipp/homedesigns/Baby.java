@@ -35,10 +35,11 @@ public class Baby {
     this.gender = gender;
     this.scales = scales;
 
+    Calendar today = Calendar.getInstance();
+    int age_by_days = ((today.get(Calendar.YEAR) - birth_date.get(Calendar.YEAR)) * 365) + (today.get(Calendar.DAY_OF_YEAR) - birth_date.get(Calendar.DAY_OF_YEAR));
 
-//    Calendar today = Calendar.getInstance();
-//    this.age_by_week = age_by_week;
-//        this.adj_age = age_by_week - (40 - week_number_of_birth);
+    this.age_by_week = age_by_days / 7;
+    this.adj_age = age_by_week - (40 - week_number_of_birth);
     }
 
 
