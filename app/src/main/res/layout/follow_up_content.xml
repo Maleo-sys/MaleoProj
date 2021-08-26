@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appsnipp.homedesigns.FollowUpCenter"
+    tools:context="com.appsnipp.maleo_proj.FollowUpCenter"
     >
 
-    <com.appsnipp.homedesigns.AAChartCoreLib.AAChartCreator.AAChartView
+    <com.appsnipp.maleo_proj.AAChartCoreLib.AAChartCreator.AAChartView
         android:id="@+id/AAChartView"
         android:layout_width="0dp"
         android:layout_height="0dp"

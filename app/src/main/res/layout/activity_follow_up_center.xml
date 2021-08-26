@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/purple_background"
     android:fadingEdgeLength="10dp"
-    tools:context="com.appsnipp.homedesigns.FollowUpCenter">
+    tools:context="com.appsnipp.maleo_proj.FollowUpCenter">
 
 
     <include
