@@ -6,7 +6,7 @@
     style="@style/parent.contentLayout"
     android:background="@drawable/purple_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.appsnipp.homedesigns.MainActivity"
+    tools:context="com.appsnipp.maleo_proj.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <androidx.core.widget.NestedScrollView

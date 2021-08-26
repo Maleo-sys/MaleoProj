@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:723567238566:android:c207f70927933cb0870367",
         "android_client_info": {
-          "package_name": "com.appsnipp.homedesigns"
+          "package_name": "com.appsnipp.maleo_proj"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "723567238566-7kkfo63ivco0q8rr0hv6k92apd2qt6c7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.appsnipp.homedesigns",
+            "package_name": "com.appsnipp.maleo_proj",
             "certificate_hash": "02b9789995f736120ed890a528b8915b13004e26"
           }
         },
