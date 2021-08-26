@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardColorRed"
-    tools:context="com.appsnipp.homedesigns.MainActivity">
+    tools:context="com.appsnipp.maleo_proj.MainActivity">
 
     <include layout="@layout/content_main" />
 

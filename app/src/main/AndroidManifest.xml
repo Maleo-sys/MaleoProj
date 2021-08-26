@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.appsnipp.homedesigns">
+    package="com.appsnipp.maleo_proj">
 
     <application
-        android:name=".App"
+        android:name="com.appsnipp.maleo_proj.App"
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgotPassword"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".AppointmentsCenter" />
-        <activity android:name=".DataCenter" />
-        <activity android:name=".FollowUpCenter" />
+        <activity android:name="com.appsnipp.maleo_proj.ForgotPassword"></activity>
+        <activity android:name="com.appsnipp.maleo_proj.RegisterActivity" />
+        <activity android:name="com.appsnipp.maleo_proj.LoginActivity" />
+        <activity android:name="com.appsnipp.maleo_proj.AppointmentsCenter" />
+        <activity android:name="com.appsnipp.maleo_proj.DataCenter" />
+        <activity android:name="com.appsnipp.maleo_proj.FollowUpCenter" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.appsnipp.maleo_proj.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
