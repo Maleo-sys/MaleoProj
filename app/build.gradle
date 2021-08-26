@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.appsnipp.homedesigns"
+        applicationId "com.appsnipp.maleo_proj"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
