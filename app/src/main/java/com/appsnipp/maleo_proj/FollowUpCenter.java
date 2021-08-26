@@ -2,6 +2,7 @@ package com.appsnipp.maleo_proj;
 
 import android.content.Intent;
 import androidx.annotation.NonNull;
+import com.appsnipp.maleo_proj.R;
 
 import com.appsnipp.maleo_proj.AAChartCoreLib.AAChartCreator.AAChartModel;
 import com.appsnipp.maleo_proj.AAChartCoreLib.AAChartCreator.AAChartView;

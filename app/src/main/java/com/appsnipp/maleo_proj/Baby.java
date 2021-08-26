@@ -1,4 +1,4 @@
-package com.appsnipp.homedesigns;
+package com.appsnipp.maleo_proj;
 
 import android.provider.ContactsContract;
 import android.widget.DatePicker;

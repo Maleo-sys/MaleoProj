@@ -6,6 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import com.appsnipp.maleo_proj.R;
 
 public class DataCenter extends AppCompatActivity {
 
