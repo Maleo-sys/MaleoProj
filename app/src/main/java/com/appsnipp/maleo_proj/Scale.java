@@ -1,20 +1,25 @@
 package com.appsnipp.maleo_proj;
 
 
+import java.util.Calendar;
+
 public class Scale {
     private int age_by_week;
     private double weight;
     private double height;
     private double head;
+    private Calendar date;
+
 
     public Scale(){
     }
 
-    public Scale(int age_by_week, int weight, int height, int head){
+    public Scale(int age_by_week, int weight, int height, int head, Calendar date){
         this.age_by_week = age_by_week;
         this.weight = weight;
         this.height = height;
         this.head = head;
+        this.date = date;
     }
 
     public void setWeight(double weight) {
@@ -47,6 +52,14 @@ public class Scale {
 
     public double getWeight() {
         return weight;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 }
 

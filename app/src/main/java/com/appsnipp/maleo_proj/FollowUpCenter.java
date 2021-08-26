@@ -10,19 +10,37 @@ import com.appsnipp.maleo_proj.AAChartCoreLib.AAChartEnum.AAChartSymbolType;
 import com.appsnipp.maleo_proj.AAChartCoreLib.AAChartEnum.AAChartType;
 import com.appsnipp.maleo_proj.AAChartCoreLib.AAOptionsModel.AAMarker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class FollowUpCenter extends AppCompatActivity {
 private static final String TAG = "FollowUpCenter";
     private AAChartModel CurrChartModel;
     private AAChartView aaChartView;
-    private Object[] weight;
-    private Object[] head_c;
-    private Object[] length;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseUsers;
+
+    ArrayList<Scale> stat_list = new ArrayList<Scale>();;
+    Object[] weight_list = new Object[25];
+    Object[] headc_list = new Object[25];
+    Object[] length_list = new Object[25];
+    String name;
+    String gender;
+    int fixed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -32,70 +50,122 @@ private static final String TAG = "FollowUpCenter";
         setContentView(R.layout.activity_follow_up_center);
         aaChartView = findViewById(R.id.AAChartView);
 
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-        // Set selected view
-        bottomNavigationView.setSelectedItemId(R.id.navigationFollowUp);
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.navigationFollowUp:
-                        startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.navigationPersonalSpace:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.navigationDataCenter:
-                        startActivity(new Intent(getApplicationContext(), DataCenter.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case  R.id.navigationAppointments:
-                        startActivity(new Intent(getApplicationContext(), AppointmentsCenter.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if(currentUser == null){
+                return;
             }
-        });
+            String currentId = currentUser.getUid();
 
-        // Initialize and assign variable
-        BottomNavigationView followup_top_navigation = findViewById(R.id.followup_nav);
-        // Set selected view
-        followup_top_navigation.setSelectedItemId(R.id.head_measurement);
-        CurrChartModel = configureHeadDiameterChartModel();
-        aaChartView.aa_drawChartWithChartModel(CurrChartModel);
-        //Perform ItemSelectedListener
-        followup_top_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.head_measurement:
-                        CurrChartModel = configureHeadDiameterChartModel();
-                        aaChartView.aa_drawChartWithChartModel(CurrChartModel);
-                        return true;
 
-                    case R.id.weight_measurement:
-                        CurrChartModel = configureWeightChartModel();
-                        aaChartView.aa_drawChartWithChartModel(CurrChartModel);
-                        return true;
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+            ref.child(currentId).child("childs").orderByChild("name").equalTo("boaz").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    stat_list.clear();
+                    for(DataSnapshot ds : snapshot.child("child").child("stats").getChildren()){
+                        Scale s = ds.getValue(Scale.class);
+                        if(s != null)
+                            stat_list.add(s);
+                    }
 
-                    case  R.id.height_measurement:
-                        CurrChartModel =configureHeightChartModel();
-                        aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+                    int i = 0;
+                    for(Scale s : stat_list){
+                        if(s != null) {
+                            length_list[i] = s.getHeight();
+                            weight_list[i] = s.getWeight();
+                            headc_list[i] = s.getHead();
+                            i++;
+                        }
+                    }
 
-                        return true;
+                    Log.v("debug", String.valueOf(headc_list[0]));
+
+                    // Initialize and assign variable
+                    BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
+                    // Set selected view
+                    bottomNavigationView.setSelectedItemId(R.id.navigationFollowUp);
+                    //Perform ItemSelectedListener
+                    bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                            switch (menuItem.getItemId()) {
+                                case R.id.navigationFollowUp:
+                                    startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+                                    overridePendingTransition(0,0);
+                                    return true;
+
+                                case R.id.navigationPersonalSpace:
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    overridePendingTransition(0,0);
+                                    return true;
+
+                                case R.id.navigationDataCenter:
+                                    startActivity(new Intent(getApplicationContext(), DataCenter.class));
+                                    overridePendingTransition(0,0);
+                                    return true;
+
+                                case  R.id.navigationAppointments:
+                                    startActivity(new Intent(getApplicationContext(), AppointmentsCenter.class));
+                                    overridePendingTransition(0,0);
+                                    return true;
+                            }
+                            return false;
+                        }
+                    });
+
+                    // Initialize and assign variable
+                    BottomNavigationView followup_top_navigation = findViewById(R.id.followup_nav);
+                    // Set selected view
+                    followup_top_navigation.setSelectedItemId(R.id.head_measurement);
+                    CurrChartModel = configureHeadDiameterChartModel();
+                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+                    //Perform ItemSelectedListener
+                    followup_top_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                            switch (menuItem.getItemId()) {
+                                case R.id.head_measurement:
+                                    CurrChartModel = configureHeadDiameterChartModel();
+                                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+                                    return true;
+
+                                case R.id.weight_measurement:
+                                    CurrChartModel = configureWeightChartModel();
+                                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+                                    return true;
+
+                                case  R.id.height_measurement:
+                                    CurrChartModel =configureHeightChartModel();
+                                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+
+                                    return true;
+                            }
+                            return false;
+                        }
+                    });
+
+
                 }
-                return false;
-            }
-        });
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        else{
+
+        }
+//        Toast.makeText(this, "gender " + gender,
+//                Toast.LENGTH_LONG).show();
+
+
     }
+
+
+
 
 
     private AAChartModel configureWeightChartModel(){
@@ -114,38 +184,12 @@ private static final String TAG = "FollowUpCenter";
                                 .color("#000067")
                                 .size(0.2)
                                 .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
-                                .data(new Object[]{
-                                        3.027282,
-                                        4.080792,
-                                        5.117754,
-                                        5.888058,
-                                        6.484777,
-                                        6.966941,
-                                        7.366195,
-                                        7.706413,
-                                        8.003205,
-                                        8.26946,
-                                        8.5139,
-                                        8.742959,
-                                        8.960956,
-                                        9.170505,
-                                        9.373665,
-                                        9.571948,
-                                        9.7667,
-                                        9.958406,
-                                        10.14755,
-                                        10.33431,
-                                        10.51961,
-                                        10.70383,
-                                        10.88716,
-                                        11.06946,
-                                        11.25065,
-                                }),
+                                .data(weight_list),
                         new AASeriesElement()
                                 .name("98%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#ff0000")
+                                .color("#fffe00")
                                 .data(new Object[]{
                                 4.419354,
                                 5.798331,
@@ -273,7 +317,7 @@ private static final String TAG = "FollowUpCenter";
                                 .name("2%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#ff0000")
+                                .color("#fffe00")
                                 .data(new Object[]{
                                 2.459312,
                                 3.39089,
@@ -321,36 +365,12 @@ private static final String TAG = "FollowUpCenter";
                                 .name("my baby")
                                 .color("#000067")
                                 .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
-                                .data(new Object[]{48.60732,
-                                53.41147,
-                                57.0756,
-                                60.0503,
-                                62.48254,
-                                64.4784,
-                                66.18,
-                                67.70013,
-                                69.1118,
-                                70.45564,
-                                71.74005,
-                                72.96769,
-                                74.14605,
-                                75.28228,
-                                76.37879,
-                                77.43914,
-                                78.46814,
-                                79.46765,
-                                80.43942,
-                                81.38338,
-                                82.30162,
-                                83.19621,
-                                84.06859,
-                                84.92082,
-                                85.75545,}),
+                                .data(length_list),
                         new AASeriesElement()
                                 .name("98%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#ff0000")
+                                .color("#fffe00")
                                 .data(new Object[]{
                                 53.67041,
                                 58.61749,
@@ -478,7 +498,7 @@ private static final String TAG = "FollowUpCenter";
                                 .name("2%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#ff0000")
+                                .color("#fffe00")
                                 .data(new Object[]{
                                 46.09799,
                                 50.83131,
@@ -527,35 +547,11 @@ private static final String TAG = "FollowUpCenter";
                                 .name("my baby")
                                 .color("#000067")
                                 .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
-                                .data(new Object[]{33.60502,
-                                36.48819,
-                                38.33754,
-                                39.71613,
-                                40.82636,
-                                41.74325,
-                                42.5073,
-                                43.14851,
-                                43.69022,
-                                44.15237,
-                                44.55065,
-                                44.89654,
-                                45.19953,
-                                45.46778,
-                                45.70745,
-                                45.92456,
-                                46.12259,
-                                46.30582,
-                                46.47646,
-                                46.63699,
-                                46.78927,
-                                46.93407,
-                                47.07289,
-                                47.2058,
-                                47.3334,}),
+                                .data(headc_list),
                         new AASeriesElement()
                                 .name("98%")
                                 .size(0.2)
-                                .color("#ff0000")
+                                .color("#fffe00")
                                 .marker(new AAMarker().radius(0f))
                                 .data(new Object[]{
                                 37.0023239,
@@ -684,7 +680,7 @@ private static final String TAG = "FollowUpCenter";
                                 .name("2%")
                                 .size(0.2)
                                 .marker(new AAMarker().radius(0f))
-                                .color("#ff0000")
+                                .color("#fffe00")
                                 .data(new Object[]{
                                 31.92128,
                                 34.94019,
@@ -716,6 +712,11 @@ private static final String TAG = "FollowUpCenter";
         this.CurrChartModel = aaChartModel;
 
         return aaChartModel;
+    }
+
+    private String log(String gen){
+        Log.v("score",String.valueOf(gen));
+        return gen;
     }
 
 }
