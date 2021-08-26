@@ -1,5 +1,6 @@
-package com.appsnipp.homedesigns;
+package com.appsnipp.maleo_proj;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -29,8 +30,12 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,20 +43,26 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     public TextView hello_name;
-    private GlowButton sign_button;
-    private Spinner choose_baby;
+    private GlowButton sign_button, choose_baby;
     private DatabaseReference databaseUsers;
+    private Button add_child_dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("myTag", "This is my message");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sign_button = findViewById(R.id.sign_btn);
-        choose_baby = (Spinner) findViewById(R.id.choose_child);
+        choose_baby = findViewById(R.id.choose_child);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
+        add_child_dialog = findViewById(R.id.display_dialog);
+        add_child_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddBabyDialog();
+            }
+        });
 
 
         // Initialize Firebase Auth
@@ -73,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-        }
-        else{
+        } else {
             hello_name = findViewById(R.id.hello_name);
             hello_name.setText("שלום, \nאורח");
 
@@ -126,6 +136,56 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.radio_male:
+                if (checked)
+                    Toast.makeText(MainActivity.this, "MALE PICKED.", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.radio_female:
+                if (checked)
+                    Toast.makeText(MainActivity.this, "FEMALE PICKED.", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
+    private void showAddBabyDialog() {
+        final Dialog dialog = new Dialog(MainActivity.this);
+        //We have added a title in the custom layout. So let's disable the default title.
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
+        dialog.setCancelable(true);
+        //Mention the name of the layout of your custom dialog.
+        dialog.setContentView(R.layout.add_child_dialog);
+
+        //Initializing the views of the dialog.
+        final EditText baby_name = dialog.findViewById(R.id.baby_name);
+        final RadioGroup baby_gender = dialog.findViewById(R.id.baby_gender);
+        final EditText child_age_by_weeks = dialog.findViewById(R.id.child_age_by_weeks);
+        Button submit_child_stats = dialog.findViewById(R.id.submit_child_stats);
+
+
+        submit_child_stats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = baby_name.getText().toString();
+                String age_by_weeks_str = child_age_by_weeks.getText().toString();
+                DatePicker bdaypick = (DatePicker)findViewById(R.id.birth_date_picker); // initiate a date picker
+                int day = bdaypick.getDayOfMonth(); // get the selected day of the month
+
+                Toast.makeText(MainActivity.this, day, Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -140,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
 
             sign_button.setText("התנתק");
             choose_baby.setVisibility(View.VISIBLE);
-
 
 
         } else {
