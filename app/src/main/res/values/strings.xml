@@ -20,6 +20,12 @@
     <string name="button_send">שחזר</string>
     <string name="text_forgot_password_message">נשלח לכם קישור לשחזור הסיסמא</string>
     <string name="text_forgot_password_title">שכחתם את הסיסמא? אל דאגה!</string>
+    <string name="title_activity_add_baby">AddBaby</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 
 
 </resources>
