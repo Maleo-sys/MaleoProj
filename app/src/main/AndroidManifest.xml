@@ -14,6 +14,7 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Add_Child" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
@@ -21,7 +22,7 @@
         <activity android:name=".DataCenter" />
         <activity android:name=".FollowUpCenter" />
         <activity
-            android:name="com.appsnipp.maleo_proj.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

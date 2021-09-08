@@ -138,22 +138,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.radio_male:
-                if (checked)
-                    Toast.makeText(MainActivity.this, "MALE PICKED.", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.radio_female:
-                if (checked)
-                    Toast.makeText(MainActivity.this, "FEMALE PICKED.", Toast.LENGTH_LONG).show();
-                break;
-        }
-    }
 
     private void showAddBabyDialog() {
         final Dialog dialog = new Dialog(MainActivity.this);
@@ -162,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
         dialog.setCancelable(true);
         //Mention the name of the layout of your custom dialog.
-        dialog.setContentView(R.layout.add_child_dialog);
+        dialog.setContentView(R.layout.activity_add_child);
 
         //Initializing the views of the dialog.
         final EditText baby_name = dialog.findViewById(R.id.baby_name);
