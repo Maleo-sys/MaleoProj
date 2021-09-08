@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private GlowButton sign_button;
     private Spinner choose_baby;
     private DatabaseReference databaseUsers;
-    private Button add_child_dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +58,6 @@ public class MainActivity extends AppCompatActivity {
         choose_baby = findViewById(R.id.choose_child);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
-//        add_child_dialog = findViewById(R.id.display_dialog);
-//        add_child_dialog.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                showAddBabyDialog();
-//            }
-//        });
 
 
         // Initialize Firebase Auth
