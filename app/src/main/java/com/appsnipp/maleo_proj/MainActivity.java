@@ -36,6 +36,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     public TextView hello_name;
-    private GlowButton sign_button, choose_baby;
+    private GlowButton sign_button;
+    private Spinner choose_baby;
     private DatabaseReference databaseUsers;
     private Button add_child_dialog;
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         choose_baby = findViewById(R.id.choose_child);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
-        add_child_dialog = findViewById(R.id.display_dialog);
+        add_child_dialog = findViewById(R.id.display_addbaby_dialog);
         add_child_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,12 +201,12 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
 
             sign_button.setText("התנתק");
-            choose_baby.setVisibility(View.VISIBLE);
+//            choose_baby.setVisibility(View.VISIBLE);
 
 
         } else {
             sign_button.setText("התחבר");
-            choose_baby.setVisibility(View.GONE);
+//            choose_baby.setVisibility(View.GONE);
 
         }
     }
