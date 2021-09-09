@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private GlowButton sign_button;
     private Spinner choose_baby;
     private DatabaseReference databaseUsers;
+
     private Button add_child_dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         choose_baby = findViewById(R.id.choose_child);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
+
         add_child_dialog = findViewById(R.id.display_addbaby_dialog);
         add_child_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 showAddBabyDialog();
             }
         });
+
 
 
         // Initialize Firebase Auth
@@ -138,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -155,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void showAddBabyDialog() {
         final Dialog dialog = new Dialog(MainActivity.this);
         //We have added a title in the custom layout. So let's disable the default title.
@@ -162,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
         //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
         dialog.setCancelable(true);
         //Mention the name of the layout of your custom dialog.
+
         dialog.setContentView(R.layout.add_child_dialog);
 
         //Initializing the views of the dialog.
@@ -201,11 +208,13 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
 
             sign_button.setText("התנתק");
+
 //            choose_baby.setVisibility(View.VISIBLE);
 
 
         } else {
             sign_button.setText("התחבר");
+
 //            choose_baby.setVisibility(View.GONE);
 
         }
@@ -354,4 +363,5 @@ public class MainActivity extends AppCompatActivity {
 
                 .build();
     }
+
 }
