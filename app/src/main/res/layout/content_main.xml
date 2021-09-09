@@ -72,18 +72,15 @@
                 <Spinner
                     android:id="@+id/choose_child"
                     android:layout_width="61dp"
-                    android:layout_height="31dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
                     android:background="@drawable/input_rounded_corners"
                     android:backgroundTint="#A3A2A2"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.003"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.992" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,7 +110,6 @@
                             android:background="@drawable/home_gradient_maths"
                             android:minHeight="100dp"
                             android:onClick="DisplayAppointmentsDialog"
-
                             android:padding="10dp">
 
                             <ImageView
@@ -186,13 +182,16 @@
                         app:cardPreventCornerOverlap="true">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:id="@+id/about_application"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:minHeight="100dp"
                             android:padding="10dp"
                             gl:end_color="@color/gradientViolet"
                             gl:orientation="LEFT_RIGHT"
-                            gl:start_color="@color/gradientOrange3">
+                            gl:start_color="@color/gradientOrange3"
+                            android:onClick="DisplayAboutApplication"
+                            >
 
                             <ImageView
                                 style="@style/homeCardImage"
@@ -232,14 +231,17 @@
                         app:cardPreventCornerOverlap="true">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
-                            android:id="@+id/gradientRelativeLayout3"
+                            android:id="@+id/user_details"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:minHeight="100dp"
                             android:padding="10dp"
                             gl:end_color="@color/gradientLightYellow"
                             gl:orientation="LEFT_RIGHT"
-                            gl:start_color="@color/gradientLightGreen">
+                            gl:start_color="@color/gradientLightGreen"
+                            android:onClick="DisplayPersonalDetails"
+
+                            >
 
 
                             <TextView
@@ -349,6 +351,12 @@
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/display_addbaby_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="הוסף תינוק" />
 
 
         </LinearLayout>

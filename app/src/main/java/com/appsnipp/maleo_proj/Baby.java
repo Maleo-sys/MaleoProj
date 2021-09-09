@@ -3,6 +3,8 @@ package com.appsnipp.maleo_proj;
 import android.provider.ContactsContract;
 import android.widget.DatePicker;
 
+
+import com.appsnipp.maleo_proj.Scale;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private Spinner choose_baby;
     private DatabaseReference databaseUsers;
 
+    private Button add_child_dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
         choose_baby = findViewById(R.id.choose_child);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
+
+        add_child_dialog = findViewById(R.id.display_addbaby_dialog);
+        add_child_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddBabyDialog();
+            }
+        });
+
 
 
         // Initialize Firebase Auth
@@ -132,6 +143,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.radio_male:
+                if (checked)
+                    Toast.makeText(MainActivity.this, "MALE PICKED.", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.radio_female:
+                if (checked)
+                    Toast.makeText(MainActivity.this, "FEMALE PICKED.", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
+
     private void showAddBabyDialog() {
         final Dialog dialog = new Dialog(MainActivity.this);
         //We have added a title in the custom layout. So let's disable the default title.
@@ -139,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
         //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
         dialog.setCancelable(true);
         //Mention the name of the layout of your custom dialog.
-        dialog.setContentView(R.layout.activity_add_child);
+
+        dialog.setContentView(R.layout.add_child_dialog);
 
         //Initializing the views of the dialog.
         final EditText baby_name = dialog.findViewById(R.id.baby_name);
@@ -178,12 +208,14 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
 
             sign_button.setText("התנתק");
-            choose_baby.setVisibility(View.VISIBLE);
+
+//            choose_baby.setVisibility(View.VISIBLE);
 
 
         } else {
             sign_button.setText("התחבר");
-            choose_baby.setVisibility(View.GONE);
+
+//            choose_baby.setVisibility(View.GONE);
 
         }
     }
@@ -279,4 +311,57 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void DisplayAboutApplication(View view) {
+        new FancyGifDialog.Builder(this)
+                .setTitle("אודות האפליקציה:")
+                .setMessage("יוצרים:\nבן גנדלר\nרועי מש\nמתן גרינברג \n גרסת האפליקציה: 2.18")
+                .setNegativeBtnText("יותר מאוחר")
+                .setPositiveBtnBackground(R.color.gradientLightYellow2)
+                .setPositiveBtnText("צור קשר")
+                .setNegativeBtnBackground(R.color.gradientLightGreen)
+                .setGifResource(R.drawable.information)
+                .isCancellable(true)
+                .OnPositiveClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+//                        startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+
+                    }
+                })
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                    }
+                })
+
+                .build();
+    }
+
+    public void DisplayPersonalDetails(View view) {
+        new FancyGifDialog.Builder(this)
+                .setTitle("פרטי המשתמש:")
+                .setMessage("אימייל: test@gmail.com \n  פלאפון: 0549342221 \n תאריך הרשמה: 24.06.21")
+                .setNegativeBtnText("יציאה")
+                .setPositiveBtnBackground(R.color.gradientLightYellow2)
+                .setPositiveBtnText("עריכה")
+                .setNegativeBtnBackground(R.color.gradientLightGreen)
+                .setGifResource(R.drawable.mydetails)
+                .isCancellable(true)
+                .OnPositiveClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+//                        startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+
+                    }
+                })
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                    }
+                })
+
+                .build();
+    }
+
 }
