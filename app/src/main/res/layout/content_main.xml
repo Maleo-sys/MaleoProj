@@ -10,11 +10,8 @@
     tools:showIn="@layout/app_bar_main">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="356dp"
-        android:layout_height="773dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
