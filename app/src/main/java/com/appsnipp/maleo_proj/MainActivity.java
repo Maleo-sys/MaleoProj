@@ -302,4 +302,56 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void DisplayAboutApplication(View view) {
+        new FancyGifDialog.Builder(this)
+                .setTitle("אודות האפליקציה:")
+                .setMessage("יוצרים:\nבן גנדלר\nרועי מש\nמתן גרינברג \n גרסת האפליקציה: 2.18")
+                .setNegativeBtnText("יותר מאוחר")
+                .setPositiveBtnBackground(R.color.gradientLightYellow2)
+                .setPositiveBtnText("צור קשר")
+                .setNegativeBtnBackground(R.color.gradientLightGreen)
+                .setGifResource(R.drawable.information)
+                .isCancellable(true)
+                .OnPositiveClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+//                        startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+
+                    }
+                })
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                    }
+                })
+
+                .build();
+    }
+
+    public void DisplayPersonalDetails(View view) {
+        new FancyGifDialog.Builder(this)
+                .setTitle("פרטי המשתמש:")
+                .setMessage("אימייל: test@gmail.com \n  פלאפון: 0549342221 \n תאריך הרשמה: 24.06.21")
+                .setNegativeBtnText("יציאה")
+                .setPositiveBtnBackground(R.color.gradientLightYellow2)
+                .setPositiveBtnText("עריכה")
+                .setNegativeBtnBackground(R.color.gradientLightGreen)
+                .setGifResource(R.drawable.mydetails)
+                .isCancellable(true)
+                .OnPositiveClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+//                        startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+
+                    }
+                })
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                    }
+                })
+
+                .build();
+    }
 }
