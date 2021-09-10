@@ -69,18 +69,19 @@
                     app:pressedGlowSize="4dp"
                     app:unpressedGlowSize="2dp" />
 
-                <Spinner
-                    android:id="@+id/choose_child"
-                    android:layout_width="61dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="4dp"
-                    android:background="@drawable/input_rounded_corners"
-                    android:backgroundTint="#A3A2A2"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:visibility="visible"
+                <Button
+                    android:id="@+id/choose_child_button"
+                    android:layout_width="69dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/button1_bg"
+                    android:text="בחר תינוק"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintEnd_toEndOf="@+id/google_icon"
+                    app:layout_constraintHorizontal_bias="0.124"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -352,11 +353,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/display_addbaby_dialog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="הוסף תינוק" />
+
 
 
         </LinearLayout>

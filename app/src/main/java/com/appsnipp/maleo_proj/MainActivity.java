@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public TextView hello_name;
     private GlowButton sign_button;
-    private Spinner choose_baby;
+    private Button choose_baby;
     private DatabaseReference databaseUsers;
 
-    private Button add_child_dialog;
+    private Button choose_child_dialog;
 
 
     @Override
@@ -57,15 +57,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sign_button = findViewById(R.id.sign_btn);
-        choose_baby = findViewById(R.id.choose_child);
+        choose_baby = findViewById(R.id.choose_child_button);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
 
-        add_child_dialog = findViewById(R.id.display_addbaby_dialog);
-        add_child_dialog.setOnClickListener(new View.OnClickListener() {
+//        choose_child_dialog = findViewById(R.id.display_addbaby_dialog);
+        choose_baby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAddBabyDialog();
+                startActivity(new Intent(getApplicationContext(), Choose_Child.class));
             }
         });
 
@@ -143,57 +143,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.radio_male:
-                if (checked)
-                    Toast.makeText(MainActivity.this, "MALE PICKED.", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.radio_female:
-                if (checked)
-                    Toast.makeText(MainActivity.this, "FEMALE PICKED.", Toast.LENGTH_LONG).show();
-                break;
-        }
-    }
-
-
-    private void showAddBabyDialog() {
-        final Dialog dialog = new Dialog(MainActivity.this);
-        //We have added a title in the custom layout. So let's disable the default title.
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
-        dialog.setCancelable(true);
-        //Mention the name of the layout of your custom dialog.
-
-        dialog.setContentView(R.layout.activity_add_child);
-
-        //Initializing the views of the dialog.
-        final EditText baby_name = dialog.findViewById(R.id.baby_name);
-        final RadioGroup baby_gender = dialog.findViewById(R.id.baby_gender);
-        final EditText child_age_by_weeks = dialog.findViewById(R.id.child_age_by_weeks);
-        Button submit_child_stats = dialog.findViewById(R.id.submit_child_stats);
-
-
-        submit_child_stats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = baby_name.getText().toString();
-                String age_by_weeks_str = child_age_by_weeks.getText().toString();
-                DatePicker bdaypick = (DatePicker)findViewById(R.id.birth_date_picker); // initiate a date picker
-                int day = bdaypick.getDayOfMonth(); // get the selected day of the month
-
-                Toast.makeText(MainActivity.this, day, Toast.LENGTH_SHORT).show();
-
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-    }
+//    public void onRadioButtonClicked(View view) {
+//        // Is the button now checked?
+//        boolean checked = ((RadioButton) view).isChecked();
+//
+//        // Check which radio button was clicked
+//        switch (view.getId()) {
+//            case R.id.radio_male:
+//                if (checked)
+//                    Toast.makeText(MainActivity.this, "MALE PICKED.", Toast.LENGTH_LONG).show();
+//                break;
+//            case R.id.radio_female:
+//                if (checked)
+//                    Toast.makeText(MainActivity.this, "FEMALE PICKED.", Toast.LENGTH_LONG).show();
+//                break;
+//        }
+//    }
+//
+//
+//    private void showAddBabyDialog() {
+//        final Dialog dialog = new Dialog(MainActivity.this);
+//        //We have added a title in the custom layout. So let's disable the default title.
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
+//        dialog.setCancelable(true);
+//        //Mention the name of the layout of your custom dialog.
+//
+//        dialog.setContentView(R.layout.activity_add_child);
+//
+//        //Initializing the views of the dialog.
+//        final EditText baby_name = dialog.findViewById(R.id.baby_name);
+//        final RadioGroup baby_gender = dialog.findViewById(R.id.baby_gender);
+//        final EditText child_age_by_weeks = dialog.findViewById(R.id.weeks_to_birth);
+//        Button submit_child_stats = dialog.findViewById(R.id.submit_child_stats);
+//
+//
+//        submit_child_stats.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String name = baby_name.getText().toString();
+//                String age_by_weeks_str = child_age_by_weeks.getText().toString();
+//                DatePicker bdaypick = (DatePicker)findViewById(R.id.birth_date_picker); // initiate a date picker
+//                int day = bdaypick.getDayOfMonth(); // get the selected day of the month
+//
+//                Toast.makeText(MainActivity.this, day, Toast.LENGTH_SHORT).show();
+//
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 
     @Override
     public void onResume() {
