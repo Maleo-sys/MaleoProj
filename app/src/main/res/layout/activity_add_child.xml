@@ -20,7 +20,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/child_age_by_weeks" />
+        app:layout_constraintTop_toBottomOf="@+id/weeks_to_birth" />
 
         <TextView
             android:id="@+id/add_baby_details_title"
@@ -60,7 +60,6 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/baby_name">
 
         <RadioButton
@@ -80,12 +79,12 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/child_age_by_weeks"
+        android:id="@+id/weeks_to_birth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:hint="גיל התינוק בשבועות"
+        android:hint="משך ההריון עד הלידה (שבועות)"
         android:imeOptions="actionNext"
         android:inputType="number"
         android:textSize="12sp"
@@ -117,7 +116,6 @@
         android:text="הוסף תינוק"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/height_measurement" />
 
@@ -154,6 +152,8 @@
         android:gravity="center"
         android:hint="משקל"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight_measurement" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
