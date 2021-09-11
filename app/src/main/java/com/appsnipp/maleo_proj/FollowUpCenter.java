@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 
 public class FollowUpCenter extends AppCompatActivity {
-private static final String TAG = "FollowUpCenter";
+    private static final String TAG = "FollowUpCenter";
     private AAChartModel CurrChartModel;
     private AAChartView aaChartView;
     private FirebaseAuth mAuth;
@@ -120,25 +120,27 @@ private static final String TAG = "FollowUpCenter";
                     BottomNavigationView followup_top_navigation = findViewById(R.id.followup_nav);
                     // Set selected view
                     followup_top_navigation.setSelectedItemId(R.id.head_measurement);
-                    CurrChartModel = configureHeadDiameterChartModel();
+                    CurrChartModel = configureHeadDiameterMaleChartModel();
                     aaChartView.aa_drawChartWithChartModel(CurrChartModel);
                     //Perform ItemSelectedListener
                     followup_top_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                         @Override
+//                                  TODO if gender == male than configureWeightMaleChartModel else configureWeightFemaleChartModel
+//                                    and all other too
                         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                             switch (menuItem.getItemId()) {
                                 case R.id.head_measurement:
-                                    CurrChartModel = configureHeadDiameterChartModel();
+                                    CurrChartModel = configureHeadDiameterMaleChartModel();
                                     aaChartView.aa_drawChartWithChartModel(CurrChartModel);
                                     return true;
 
                                 case R.id.weight_measurement:
-                                    CurrChartModel = configureWeightChartModel();
+                                    CurrChartModel = configureWeightMaleChartModel();
                                     aaChartView.aa_drawChartWithChartModel(CurrChartModel);
                                     return true;
 
                                 case  R.id.height_measurement:
-                                    CurrChartModel =configureHeightChartModel();
+                                    CurrChartModel =configureHeightMaleChartModel();
                                     aaChartView.aa_drawChartWithChartModel(CurrChartModel);
 
                                     return true;
@@ -157,7 +159,8 @@ private static final String TAG = "FollowUpCenter";
             });
         }
         else{
-
+            Toast.makeText(FollowUpCenter.this,"You need to login",Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
 //        Toast.makeText(this, "gender " + gender,
 //                Toast.LENGTH_LONG).show();
@@ -168,8 +171,11 @@ private static final String TAG = "FollowUpCenter";
 
 
 
+    /*
+    represent the growth chart of male's weight
+    */
 
-    private AAChartModel configureWeightChartModel(){
+    private AAChartModel configureWeightMaleChartModel(){
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון משקל")
@@ -352,7 +358,203 @@ private static final String TAG = "FollowUpCenter";
         return aaChartModel;
     }
 
-    private AAChartModel configureHeightChartModel(){
+    /*
+    represent the growth chart of female's weight
+    */
+
+    private AAChartModel configureWeightFemaleChartModel(){
+        AAChartModel aaChartModel = new AAChartModel()
+                .chartType(AAChartType.Line)
+                .title("אחוזון משקל")
+                .subtitle("משקל בגרמים, עפי מידע מארגון הבריאות העולמי")
+                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .backgroundColor("#CDDAFD")
+
+                .dataLabelsEnabled(false)
+                .yAxisGridLineWidth(0f)
+                .series(new AASeriesElement[]{
+                        new AASeriesElement()
+                                .name("התינוק שלי")
+                                .color("#000067")
+                                .size(0.2)
+                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
+                                .data(weight_list),
+                        new AASeriesElement()
+                                .name("98%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                4.2304,
+                                5.4755,
+                                6.6297,
+                                7.5145,
+                                8.2333,
+                                8.8294,
+                                9.3355,
+                                9.7804,
+                                10.1811,
+                                10.5466,
+                                10.8851,
+                                11.2039,
+                                11.5087,
+                                11.8028,
+                                12.0898,
+                                12.3707,
+                                12.6484,
+                                12.9237,
+                                13.1972,
+                                13.4699,
+                                13.7422,
+                                14.0155,
+                                14.2902,
+                                14.5669,
+                                14.8453
+
+                        }),
+                        new AASeriesElement()
+                                .name("75%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                3.5504,
+                                4.5901,
+                                5.5961,
+                                6.3642,
+                                6.9843,
+                                7.495,
+                                7.9251,
+                                8.2994,
+                                8.6331,
+                                8.9354,
+                                9.2141,
+                                9.4761,
+                                9.7268,
+                                9.9694,
+                                10.2067,
+                                10.4399,
+                                10.6706,
+                                10.8998,
+                                11.1275,
+                                11.3542,
+                                11.5803,
+                                11.8067,
+                                12.0338,
+                                12.2618,
+                                12.4909
+
+                        }),
+                        new AASeriesElement()
+                                .name("50%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                3.2322,
+                                4.1873,
+                                5.1282,
+                                5.8458,
+                                6.4237,
+                                6.8985,
+                                7.297,
+                                7.6422,
+                                7.9487,
+                                8.2254,
+                                8.48,
+                                8.7192,
+                                8.9481,
+                                9.1699,
+                                9.387,
+                                9.6008,
+                                9.8124,
+                                10.0226,
+                                10.2315,
+                                10.4393,
+                                10.6464,
+                                10.8534,
+                                11.0608,
+                                11.2688,
+                                11.4775
+
+                        }),
+                        new AASeriesElement()
+                                .name("25%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                2.9323,
+                                3.8143,
+                                4.6959,
+                                5.368,
+                                5.9083,
+                                6.3513,
+                                6.7221,
+                                7.042,
+                                7.3249,
+                                7.5795,
+                                7.8134,
+                                8.033,
+                                8.2431,
+                                8.447,
+                                8.6467,
+                                8.8437,
+                                9.0386,
+                                9.2323,
+                                9.4248,
+                                9.616,
+                                9.8065,
+                                9.9965,
+                                10.1867,
+                                10.3771,
+                                10.568
+
+                        }),
+                        new AASeriesElement()
+                                .name("2%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                2.3947,
+                                3.1611,
+                                3.9411,
+                                4.536,
+                                5.0134,
+                                5.4038,
+                                5.7294,
+                                6.0084,
+                                6.2534,
+                                6.4729,
+                                6.6738,
+                                6.8623,
+                                7.0426,
+                                7.2178,
+                                7.3897,
+                                7.5595,
+                                7.7276,
+                                7.8945,
+                                8.0603,
+                                8.2246,
+                                8.3879,
+                                8.5503,
+                                8.7124,
+                                8.8741,
+                                9.0359
+
+                        })
+                });
+        this.CurrChartModel = aaChartModel;
+
+        return aaChartModel;
+    }
+
+    /*
+    represent the growth chart of male's height
+    */
+
+    private AAChartModel configureHeightMaleChartModel(){
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון גובה")
@@ -533,7 +735,201 @@ private static final String TAG = "FollowUpCenter";
         return aaChartModel;
     }
 
-    private AAChartModel configureHeadDiameterChartModel(){
+    /*
+    represent the growth chart of female's height
+    */
+
+    private AAChartModel configureHeightFemaleChartModel(){
+        AAChartModel aaChartModel = new AAChartModel()
+                .chartType(AAChartType.Line)
+                .title("אחוזון גובה")
+                .subtitle("גובה בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
+                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .backgroundColor("#CDDAFD")
+                .dataLabelsEnabled(false)
+                .yAxisGridLineWidth(0f)
+                .series(new AASeriesElement[]{
+                        new AASeriesElement()
+                                .name("my baby")
+                                .color("#000067")
+                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
+                                .data(length_list),
+                        new AASeriesElement()
+                                .name("98%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                52.8731,
+                                57.5956,
+                                61.1396,
+                                64.013,
+                                66.4188,
+                                68.4648,
+                                70.2639,
+                                71.918,
+                                73.4798,
+                                74.975,
+                                76.4169,
+                                77.8126,
+                                79.165,
+                                80.4768,
+                                81.7498,
+                                82.9883,
+                                84.1944,
+                                85.3691,
+                                86.5156,
+                                87.6346,
+                                88.7294,
+                                89.7997,
+                                90.8444,
+                                91.8675,
+                                92.8688
+
+                        }),
+                        new AASeriesElement()
+                                .name("75%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                50.4041,
+                                55.0053,
+                                58.4407,
+                                61.2227,
+                                63.5498,
+                                65.5257,
+                                67.2598,
+                                68.849,
+                                70.345,
+                                71.7729,
+                                73.1461,
+                                74.4713,
+                                75.7518,
+                                76.9912,
+                                78.1921,
+                                79.3575,
+                                80.4903,
+                                81.5926,
+                                82.6665,
+                                83.7135,
+                                84.7358,
+                                85.7342,
+                                86.7085,
+                                87.6608,
+                                88.5917
+
+                        }),
+                        new AASeriesElement()
+                                .name("50%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                49.1477,
+                                53.6872,
+                                57.0673,
+                                59.8029,
+                                62.0899,
+                                64.0301,
+                                65.7311,
+                                67.2873,
+                                68.7498,
+                                70.1435,
+                                71.4818,
+                                72.771,
+                                74.015,
+                                75.2176,
+                                76.3817,
+                                77.5099,
+                                78.6055,
+                                79.671,
+                                80.7079,
+                                81.7182,
+                                82.7036,
+                                83.6654,
+                                84.604,
+                                85.5202,
+                                86.4153
+
+                        }),
+                        new AASeriesElement()
+                                .name("25%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                47.8913,
+                                52.3691,
+                                55.6939,
+                                58.3831,
+                                60.63,
+                                62.5345,
+                                64.2024,
+                                65.7256,
+                                67.1546,
+                                68.5141,
+                                69.8175,
+                                71.0708,
+                                72.2782,
+                                73.444,
+                                74.5713,
+                                75.6623,
+                                76.7207,
+                                77.7494,
+                                78.7493,
+                                79.7229,
+                                80.6714,
+                                81.5966,
+                                82.4995,
+                                83.3796,
+                                84.2389
+
+                        }),
+                        new AASeriesElement()
+                                .name("2%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                45.4223,
+                                49.7788,
+                                52.995,
+                                55.5928,
+                                57.761,
+                                59.5954,
+                                61.1983,
+                                62.6566,
+                                64.0198,
+                                65.312,
+                                66.5467,
+                                67.7294,
+                                68.865,
+                                69.9584,
+                                71.0136,
+                                72.0315,
+                                73.0166,
+                                73.9729,
+                                74.9002,
+                                75.8018,
+                                76.6778,
+                                77.5311,
+                                78.3636,
+                                79.1729,
+                                79.9618
+
+                        })
+                });
+        this.CurrChartModel = aaChartModel;
+
+        return aaChartModel;
+    }
+
+    /*
+    represent the growth chart of male's head diameter
+    */
+
+    private AAChartModel configureHeadDiameterMaleChartModel(){
 
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
@@ -708,6 +1104,196 @@ private static final String TAG = "FollowUpCenter";
                                 45.28376,
                                 45.40901,
                                 45.52915,
+                        })
+                });
+        this.CurrChartModel = aaChartModel;
+
+        return aaChartModel;
+    }
+
+    /*
+    represent the growth chart of fe56male's head diameter
+    */
+
+    private AAChartModel configureHeadDiameterFemaleChartModel(){
+
+        AAChartModel aaChartModel = new AAChartModel()
+                .chartType(AAChartType.Line)
+                .title("היקף הראש")
+                .subtitle("היקף בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
+                .backgroundColor("#CDDAFD")
+                .dataLabelsEnabled(false)
+                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .yAxisGridLineWidth(0f)
+                .series(new AASeriesElement[]{
+                        new AASeriesElement()
+                                .name("my baby")
+                                .color("#000067")
+                                .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
+                                .data(headc_list),
+                        new AASeriesElement()
+                                .name("98%")
+                                .size(0.2)
+                                .color("#fffe00")
+                                .marker(new AAMarker().radius(0f))
+                                .data(new Object[]{
+                                36.2475,
+                                38.8926,
+                                40.6758,
+                                42.0155,
+                                43.1132,
+                                44.0311,
+                                44.8049,
+                                45.463,
+                                46.0238,
+                                46.5063,
+                                46.9247,
+                                47.2907,
+                                47.6145,
+                                47.9029,
+                                48.163,
+                                48.3999,
+                                48.616,
+                                48.8169,
+                                49.0049,
+                                49.1834,
+                                49.3535,
+                                49.5165,
+                                49.6738,
+                                49.8257,
+                                49.9726
+
+                        }),
+                        new AASeriesElement()
+                                .name("75%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                34.6776,
+                                37.3376,
+                                39.0695,
+                                40.3701,
+                                41.4354,
+                                42.3264,
+                                43.0782,
+                                43.7173,
+                                44.2631,
+                                44.7326,
+                                45.1401,
+                                45.4971,
+                                45.8131,
+                                46.0951,
+                                46.3494,
+                                46.5808,
+                                46.7928,
+                                46.9896,
+                                47.1741,
+                                47.3488,
+                                47.5154,
+                                47.6753,
+                                47.8297,
+                                47.9789,
+                                48.1232
+
+                        }),
+                        new AASeriesElement()
+                                .name("50%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                33.8787,
+                                36.5463,
+                                38.2521,
+                                39.5328,
+                                40.5817,
+                                41.459,
+                                42.1995,
+                                42.829,
+                                43.3671,
+                                43.83,
+                                44.2319,
+                                44.5844,
+                                44.8965,
+                                45.1752,
+                                45.4265,
+                                45.6551,
+                                45.865,
+                                46.0598,
+                                46.2424,
+                                46.4152,
+                                46.5801,
+                                46.7384,
+                                46.8913,
+                                47.0391,
+                                47.1822
+
+                        }),
+                        new AASeriesElement()
+                                .name("25%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                33.0798,
+                                35.755,
+                                37.4347,
+                                38.6955,
+                                39.728,
+                                40.5916,
+                                41.3208,
+                                41.9407,
+                                42.4712,
+                                42.9275,
+                                43.3238,
+                                43.6717,
+                                43.9799,
+                                44.2553,
+                                44.5036,
+                                44.7294,
+                                44.9373,
+                                45.13,
+                                45.3108,
+                                45.4816,
+                                45.6448,
+                                45.8015,
+                                45.9529,
+                                46.0993,
+                                46.2412
+                        }),
+                        new AASeriesElement()
+                                .name("2%")
+                                .size(0.2)
+                                .marker(new AAMarker().radius(0f))
+                                .color("#fffe00")
+                                .data(new Object[]{
+                                31.5099,
+                                34.2,
+                                35.8285,
+                                37.0501,
+                                38.0502,
+                                38.8869,
+                                39.5941,
+                                40.195,
+                                40.7104,
+                                41.1537,
+                                41.5391,
+                                41.8781,
+                                42.1785,
+                                42.4475,
+                                42.69,
+                                42.9103,
+                                43.114,
+                                43.3027,
+                                43.4799,
+                                43.647,
+                                43.8067,
+                                43.9603,
+                                44.1088,
+                                44.2525,
+                                44.3918
+
                         })
                 });
         this.CurrChartModel = aaChartModel;
