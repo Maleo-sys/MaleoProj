@@ -163,7 +163,7 @@ public class FollowUpCenter extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
 //        Toast.makeText(this, "gender " + gender,
-//                Toast.LENGTH_LONG).show();
+//                Toast.LENGTH_LONG).show(); test
 
 
     }
