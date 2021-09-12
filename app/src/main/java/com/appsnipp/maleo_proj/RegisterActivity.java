@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class RegisterActivity extends AppCompatActivity {
     EditText mFullname, mEmail, mPassword, mConfirm;
     Button mRegisterbtn;
-    ImageView google_sign, facebook_sign;
+    ImageView google_sign;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
     FirebaseDatabase database;
@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mFullname = findViewById(R.id.et_username);

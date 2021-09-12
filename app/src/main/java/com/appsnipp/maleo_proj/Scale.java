@@ -1,10 +1,8 @@
 package com.appsnipp.maleo_proj;
 
 
-import java.util.Calendar;
-
 public class Scale {
-    private int age_by_week;
+    private int adj_age;
     private double weight;
     private double height;
     private double head;
@@ -14,7 +12,7 @@ public class Scale {
     }
 
     public Scale(int age_by_week, double weight, double height, double head){
-        this.age_by_week = age_by_week;
+        this.adj_age = age_by_week;
         this.weight = weight;
         this.height = height;
         this.head = head;
@@ -32,12 +30,12 @@ public class Scale {
         this.head = head;
     }
 
-    public void setAge_by_week(int age_by_week) {
-        this.age_by_week = age_by_week;
+    public void setAdj_age(int age_by_week) {
+        this.adj_age = age_by_week;
     }
 
-    public int getAge_by_week() {
-        return age_by_week;
+    public int getAdj_age() {
+        return adj_age;
     }
 
     public double getHead() {
