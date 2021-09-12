@@ -38,6 +38,7 @@ public class Add_Child extends AppCompatActivity {
     private String name_string, gender_string = "m";
     private int week_int;
     private double head_double, height_double, weight_double;
+    private Baby baby;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,20 +119,20 @@ public class Add_Child extends AppCompatActivity {
         // progressDialog.show();
 
         Scale first_scale = new Scale(week_int, weight_double, height_double, head_double);
-        Baby baby = new Baby(name_string,gender_string,week_int,first_scale, date_of_birth);
+        baby = new Baby(name_string,gender_string,week_int,first_scale, date_of_birth);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-            ref.child(Objects.requireNonNull(firebaseAuth.getUid())).child("children").child("name").setValue(baby)
+            ref.child(Objects.requireNonNull(firebaseAuth.getUid())).child("children").child(name_string).setValue(baby)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         //added to db
                         //progressDialog.dismiss();
-                        Toast.makeText(Add_Child.this, "פרטי התינוק הושלמו", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(Add_Child.this, FollowUpCenter.class);
+                        Intent i = new Intent(Add_Child.this, MainActivity.class);
                         i.putExtra("baby_name",baby.getName());
                         i.putExtra("baby_gender",baby.getGender());
                         clearData();
                         startActivity(i);
+                        Toast.makeText(Add_Child.this, "פרטי התינוק הושלמו", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
