@@ -15,33 +15,49 @@ public class Baby {
     private int age_by_week;
     private int week_number_of_birth;
     private int adj_age;
-    private Calendar birth_date;
-    private ArrayList<Scale> scales;
+//    private Calendar birth_date;
+    private DatePicker birth_date;
+    private int year_of_birth,month_of_birth,day_of_birth;
+    private ArrayList<Scale> scales = new ArrayList<Scale>();
 
 
     public Baby(){
     }
 
     //send data at register
-    public Baby(String name, String gender, int age_by_week, int week_number_of_birth, Scale first_scale){
+    public Baby(String name, String gender, int week_number_of_birth, Scale first_scale, DatePicker birth_date){
         this.name = name;
         this.gender = gender;
-        this.age_by_week = age_by_week;
         this.week_number_of_birth = week_number_of_birth;
         this.scales.add(first_scale);
+
+        this.birth_date = birth_date;
+        this.year_of_birth = birth_date.getYear();
+        this.month_of_birth = birth_date.getMonth();
+        this.day_of_birth = birth_date.getDayOfMonth();
+//        this.year_of_birth = birth_date.get(Calendar.YEAR);
+//        this.month_of_birth = birth_date.get(Calendar.MONTH);
+//        this.day_of_birth = birth_date.get(Calendar.DAY_OF_MONTH);
     }
 
     //retrieve info from database
-    public Baby(String name, String gender, ArrayList<Scale> scales){
-    this.name = name;
-    this.gender = gender;
-    this.scales = scales;
+    public Baby(String name, String gender, int week_number_of_birth, ArrayList<Scale> scales, int year_of_birth, int month_of_birth, int day_of_birth){
+        this.name = name;
+        this.gender = gender;
+        this.week_number_of_birth = week_number_of_birth;
+        this.scales = scales;
+        this.year_of_birth = year_of_birth;
+        this.month_of_birth = month_of_birth;
+        this.day_of_birth = day_of_birth;
 
-    Calendar today = Calendar.getInstance();
-    int age_by_days = ((today.get(Calendar.YEAR) - birth_date.get(Calendar.YEAR)) * 365) + (today.get(Calendar.DAY_OF_YEAR) - birth_date.get(Calendar.DAY_OF_YEAR));
-
-    this.age_by_week = age_by_days / 7;
-    this.adj_age = age_by_week - (40 - week_number_of_birth);
+        /**
+         * Calculation of adjusted age.
+         * chronological age minus the number of weeks s\he was born early.
+         */
+        Calendar today = Calendar.getInstance();
+        int age_by_days = ((today.get(Calendar.YEAR) - this.year_of_birth) * 365) + (today.get(Calendar.MONTH) - this.month_of_birth) + (today.get(Calendar.DAY_OF_MONTH) - this.day_of_birth);
+        this.age_by_week = age_by_days / 7;
+        this.adj_age = Math.max(0 , age_by_week - (40 - this.week_number_of_birth));
     }
 
 
