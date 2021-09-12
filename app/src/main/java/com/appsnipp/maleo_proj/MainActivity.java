@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private GlowButton sign_button;
     private Button choose_baby;
     private DatabaseReference databaseUsers;
+    private String name;
+    private String gender;
 
     private Button choose_child_dialog;
 
@@ -60,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         choose_baby = findViewById(R.id.choose_child_button);
         hello_name = findViewById(R.id.hello_name);
         hello_name.setText("שלום, \n");
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            name = extras.getString("baby_name");
+            gender = extras.getString("baby_gender");
+        }
 
 //        choose_child_dialog = findViewById(R.id.display_addbaby_dialog);
         choose_baby.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +124,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navigationFollowUp:
-                        startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+                        Intent i = new Intent(getApplicationContext(), FollowUpCenter.class);
+                        i.putExtra("baby_name",name);
+                        i.putExtra("baby_gender",gender);
+                        startActivity(i);
                         overridePendingTransition(0, 0);
                         return true;
 

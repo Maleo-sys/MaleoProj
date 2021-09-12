@@ -1,7 +1,9 @@
 package com.appsnipp.maleo_proj;
 
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
+
 import com.appsnipp.maleo_proj.R;
 
 import com.appsnipp.maleo_proj.AAChartCoreLib.AAChartCreator.AAChartModel;
@@ -20,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -35,121 +38,165 @@ public class FollowUpCenter extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseUsers;
 
-    ArrayList<Scale> stat_list = new ArrayList<Scale>();;
+    ArrayList<Scale> stat_list = new ArrayList<Scale>();
+    ;
     Object[] weight_list = new Object[25];
     Object[] headc_list = new Object[25];
     Object[] length_list = new Object[25];
     String name;
     String gender;
-    int fixed;
+//    int fixed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
+
 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_follow_up_center);
         aaChartView = findViewById(R.id.AAChartView);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            name = extras.getString("baby_name");
+            gender = extras.getString("baby_gender");
+        }
+
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            if(currentUser == null){
+            if (currentUser == null) {
                 return;
             }
             String currentId = currentUser.getUid();
 
-
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-            ref.child(currentId).child("childs").orderByChild("name").equalTo("boaz").addValueEventListener(new ValueEventListener() {
+            DatabaseReference ref0 = FirebaseDatabase.getInstance().getReference("users");
+            ref0.child(currentId).child("children").orderByChild("name").limitToFirst(1).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    stat_list.clear();
-                    for(DataSnapshot ds : snapshot.child("child").child("stats").getChildren()){
-                        Scale s = ds.getValue(Scale.class);
-                        if(s != null)
-                            stat_list.add(s);
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        Log.v("mug2", String.valueOf(ds));
+                        if (name == null) {
+                            name = ds.getValue(Baby.class).getName();
+                        }
+                        if (gender == null) {
+                            gender = ds.getValue(Baby.class).getGender();
+                        }
+                        Log.v("mug2", String.valueOf(name));
                     }
 
-                    int i = 0;
-                    for(Scale s : stat_list){
-                        if(s != null) {
-                            length_list[i] = s.getHeight();
-                            weight_list[i] = s.getWeight();
-                            headc_list[i] = s.getHead();
-                            i++;
-                        }
-                    }
 
-                    Log.v("debug", String.valueOf(headc_list[0]));
-
-                    // Initialize and assign variable
-                    BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-                    // Set selected view
-                    bottomNavigationView.setSelectedItemId(R.id.navigationFollowUp);
-                    //Perform ItemSelectedListener
-                    bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+                    ref.child(currentId).child("children").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
                         @Override
-                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                            switch (menuItem.getItemId()) {
-                                case R.id.navigationFollowUp:
-                                    startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
-                                    overridePendingTransition(0,0);
-                                    return true;
-
-                                case R.id.navigationPersonalSpace:
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                    overridePendingTransition(0,0);
-                                    return true;
-
-                                case R.id.navigationDataCenter:
-                                    startActivity(new Intent(getApplicationContext(), DataCenter.class));
-                                    overridePendingTransition(0,0);
-                                    return true;
-
-                                case  R.id.navigationAppointments:
-                                    startActivity(new Intent(getApplicationContext(), AppointmentsCenter.class));
-                                    overridePendingTransition(0,0);
-                                    return true;
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            stat_list.clear();
+                            for (DataSnapshot ds : snapshot.child(name).child("scales").getChildren()) {
+                                Scale s = ds.getValue(Scale.class);
+                                if (s != null)
+                                    stat_list.add(s);
                             }
-                            return false;
+
+                            int i = 0;
+                            for (Scale s : stat_list) {
+                                if (s != null) {
+                                    length_list[i] = s.getHeight();
+                                    weight_list[i] = s.getWeight();
+                                    headc_list[i] = s.getHead();
+                                    i++;
+                                }
+                            }
+
+                            Log.v("mug", String.valueOf(gender));
+
+                            // Initialize and assign variable
+                            BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
+                            // Set selected view
+                            bottomNavigationView.setSelectedItemId(R.id.navigationFollowUp);
+                            //Perform ItemSelectedListener
+                            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                @Override
+                                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                    switch (menuItem.getItemId()) {
+                                        case R.id.navigationFollowUp:
+                                            startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+                                            overridePendingTransition(0, 0);
+                                            return true;
+
+                                        case R.id.navigationPersonalSpace:
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            overridePendingTransition(0, 0);
+                                            return true;
+
+                                        case R.id.navigationDataCenter:
+                                            startActivity(new Intent(getApplicationContext(), DataCenter.class));
+                                            overridePendingTransition(0, 0);
+                                            return true;
+
+                                        case R.id.navigationAppointments:
+                                            startActivity(new Intent(getApplicationContext(), AppointmentsCenter.class));
+                                            overridePendingTransition(0, 0);
+                                            return true;
+                                    }
+                                    return false;
+                                }
+                            });
+
+                            // Initialize and assign variable
+                            BottomNavigationView followup_top_navigation = findViewById(R.id.followup_nav);
+                            // Set selected view
+                            followup_top_navigation.setSelectedItemId(R.id.head_measurement);
+                            if (gender.equals("m")) {
+                                CurrChartModel = configureHeadDiameterMaleChartModel();
+                            } else if (gender.equals("f")) {
+                                CurrChartModel = configureHeadDiameterFemaleChartModel();
+                            }
+                            aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+                            //Perform ItemSelectedListener
+                            followup_top_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                    switch (menuItem.getItemId()) {
+                                        case R.id.head_measurement:
+                                            if (gender.equals("m")) {
+                                                CurrChartModel = configureHeadDiameterMaleChartModel();
+                                            } else if (gender.equals("f")) {
+                                                CurrChartModel = configureHeadDiameterFemaleChartModel();
+                                            }
+                                            aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+                                            return true;
+
+                                        case R.id.weight_measurement:
+                                            if (gender.equals("m")) {
+                                                CurrChartModel = configureWeightMaleChartModel();
+                                            } else if (gender.equals("f")) {
+                                                CurrChartModel = configureWeightFemaleChartModel();
+                                            }
+                                            aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+                                            return true;
+
+                                        case R.id.height_measurement:
+                                            if (gender.equals("m")) {
+                                                CurrChartModel = configureHeightMaleChartModel();
+                                            } else if (gender.equals("f")) {
+                                                CurrChartModel = configureHeightFemaleChartModel();
+                                            }
+                                            aaChartView.aa_drawChartWithChartModel(CurrChartModel);
+
+                                            return true;
+                                    }
+                                    return false;
+                                }
+                            });
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
                         }
                     });
-
-                    // Initialize and assign variable
-                    BottomNavigationView followup_top_navigation = findViewById(R.id.followup_nav);
-                    // Set selected view
-                    followup_top_navigation.setSelectedItemId(R.id.head_measurement);
-                    CurrChartModel = configureHeadDiameterMaleChartModel();
-                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
-                    //Perform ItemSelectedListener
-                    followup_top_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                        @Override
-//                                  TODO if gender == male than configureWeightMaleChartModel else configureWeightFemaleChartModel
-//                                    and all other too
-                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                            switch (menuItem.getItemId()) {
-                                case R.id.head_measurement:
-                                    CurrChartModel = configureHeadDiameterMaleChartModel();
-                                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
-                                    return true;
-
-                                case R.id.weight_measurement:
-                                    CurrChartModel = configureWeightMaleChartModel();
-                                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
-                                    return true;
-
-                                case  R.id.height_measurement:
-                                    CurrChartModel =configureHeightMaleChartModel();
-                                    aaChartView.aa_drawChartWithChartModel(CurrChartModel);
-
-                                    return true;
-                            }
-                            return false;
-                        }
-                    });
-
-
                 }
 
                 @Override
@@ -157,10 +204,9 @@ public class FollowUpCenter extends AppCompatActivity {
 
                 }
             });
-        }
-        else{
-            Toast.makeText(FollowUpCenter.this,"You need to login",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        } else {
+            Toast.makeText(FollowUpCenter.this, "You need to login", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 //        Toast.makeText(this, "gender " + gender,
 //                Toast.LENGTH_LONG).show(); test
@@ -175,19 +221,19 @@ public class FollowUpCenter extends AppCompatActivity {
     represent the growth chart of male's weight
     */
 
-    private AAChartModel configureWeightMaleChartModel(){
+    private AAChartModel configureWeightMaleChartModel() {
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון משקל")
                 .subtitle("משקל בגרמים, עפי מידע מארגון הבריאות העולמי")
-                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .categories(new String[]{"שבוע 0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
                 .backgroundColor("#CDDAFD")
 
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
                         new AASeriesElement()
-                                .name("התינוק שלי")
+                                .name("My baby")
                                 .color("#000067")
                                 .size(0.2)
                                 .marker(new AAMarker().symbol(AAChartSymbolType.Diamond))
@@ -354,20 +400,15 @@ public class FollowUpCenter extends AppCompatActivity {
                         })
                 });
         this.CurrChartModel = aaChartModel;
-
         return aaChartModel;
     }
 
-    /*
-    represent the growth chart of female's weight
-    */
-
-    private AAChartModel configureWeightFemaleChartModel(){
+    private AAChartModel configureWeightFemaleChartModel() {
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון משקל")
                 .subtitle("משקל בגרמים, עפי מידע מארגון הבריאות העולמי")
-                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .categories(new String[]{"שבוע 0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
                 .backgroundColor("#CDDAFD")
 
                 .dataLabelsEnabled(false)
@@ -546,7 +587,6 @@ public class FollowUpCenter extends AppCompatActivity {
                         })
                 });
         this.CurrChartModel = aaChartModel;
-
         return aaChartModel;
     }
 
@@ -554,12 +594,12 @@ public class FollowUpCenter extends AppCompatActivity {
     represent the growth chart of male's height
     */
 
-    private AAChartModel configureHeightMaleChartModel(){
+    private AAChartModel configureHeightMaleChartModel() {
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון גובה")
                 .subtitle("גובה בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
-                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .categories(new String[]{"שבוע 0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
                 .backgroundColor("#CDDAFD")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
@@ -739,12 +779,12 @@ public class FollowUpCenter extends AppCompatActivity {
     represent the growth chart of female's height
     */
 
-    private AAChartModel configureHeightFemaleChartModel(){
+    private AAChartModel configureHeightFemaleChartModel() {
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
                 .title("אחוזון גובה")
                 .subtitle("גובה בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
-                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .categories(new String[]{"שבוע 0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
                 .backgroundColor("#CDDAFD")
                 .dataLabelsEnabled(false)
                 .yAxisGridLineWidth(0f)
@@ -929,7 +969,7 @@ public class FollowUpCenter extends AppCompatActivity {
     represent the growth chart of male's head diameter
     */
 
-    private AAChartModel configureHeadDiameterMaleChartModel(){
+    private AAChartModel configureHeadDiameterMaleChartModel() {
 
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
@@ -937,7 +977,7 @@ public class FollowUpCenter extends AppCompatActivity {
                 .subtitle("היקף בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
                 .backgroundColor("#CDDAFD")
                 .dataLabelsEnabled(false)
-                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .categories(new String[]{"שבוע 0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
                         new AASeriesElement()
@@ -1115,7 +1155,7 @@ public class FollowUpCenter extends AppCompatActivity {
     represent the growth chart of fe56male's head diameter
     */
 
-    private AAChartModel configureHeadDiameterFemaleChartModel(){
+    private AAChartModel configureHeadDiameterFemaleChartModel() {
 
         AAChartModel aaChartModel = new AAChartModel()
                 .chartType(AAChartType.Line)
@@ -1123,7 +1163,7 @@ public class FollowUpCenter extends AppCompatActivity {
                 .subtitle("היקף בסנטימטרים, עפי מידע מארגון הבריאות העולמי")
                 .backgroundColor("#CDDAFD")
                 .dataLabelsEnabled(false)
-                .categories(new String[]{"חודש","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"})
+                .categories(new String[]{"שבוע 0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
                 .yAxisGridLineWidth(0f)
                 .series(new AASeriesElement[]{
                         new AASeriesElement()
@@ -1301,8 +1341,8 @@ public class FollowUpCenter extends AppCompatActivity {
         return aaChartModel;
     }
 
-    private String log(String gen){
-        Log.v("score",String.valueOf(gen));
+    private String log(String gen) {
+        Log.v("score", String.valueOf(gen));
         return gen;
     }
 
