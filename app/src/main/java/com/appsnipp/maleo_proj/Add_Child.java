@@ -117,10 +117,16 @@ public class Add_Child extends AppCompatActivity {
         // progressDialog.setMessage("saving...");
         // progressDialog.show();
 
-        Scale first_scale = new Scale(week_int, weight_double, height_double, head_double);
-        Baby baby = new Baby(name_string,gender_string,week_int,first_scale, date_of_birth);
+
+
+        Baby baby = new Baby(name_string,gender_string,week_int, date_of_birth);
+        Scale first_scale = new Scale(baby.getAdj_age(), weight_double, height_double, head_double);
+
+        /**
+         *  Adding baby
+         */
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-            ref.child(Objects.requireNonNull(firebaseAuth.getUid())).child("children").child("name").setValue(baby)
+            ref.child(Objects.requireNonNull(firebaseAuth.getUid())).child("children").child(name_string).setValue(baby)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -130,6 +136,18 @@ public class Add_Child extends AppCompatActivity {
                         Intent i = new Intent(Add_Child.this, FollowUpCenter.class);
                         i.putExtra("baby_name",baby.getName());
                         i.putExtra("baby_gender",baby.getGender());
+
+                        /**
+                         *  Adding first scale
+                         */
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(Objects.requireNonNull(firebaseAuth.getUid())).child("children");
+                        ref.child(name_string).child("scales").child(String.valueOf(first_scale.getAdj_age())).setValue(first_scale).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+
+                            }
+                        });
+
                         clearData();
                         startActivity(i);
                     }
