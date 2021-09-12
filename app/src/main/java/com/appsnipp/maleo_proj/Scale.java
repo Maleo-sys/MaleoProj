@@ -8,18 +8,16 @@ public class Scale {
     private double weight;
     private double height;
     private double head;
-    private Calendar date;
 
 
     public Scale(){
     }
 
-    public Scale(int age_by_week, int weight, int height, int head, Calendar date){
+    public Scale(int age_by_week, double weight, double height, double head){
         this.age_by_week = age_by_week;
         this.weight = weight;
         this.height = height;
         this.head = head;
-        this.date = date;
     }
 
     public void setWeight(double weight) {
@@ -54,12 +52,5 @@ public class Scale {
         return weight;
     }
 
-    public Calendar getDate() {
-        return date;
-    }
-
-    public void setDate(Calendar date) {
-        this.date = date;
-    }
 }
 

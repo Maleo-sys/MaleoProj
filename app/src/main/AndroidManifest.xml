@@ -16,8 +16,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Choose_Child"
-            android:exported="true" />
-        <activity android:name=".Add_Child" />
+            android:exported="true"/>
+        <activity android:name=".Add_Child"/>
         <activity android:name=".ForgotPassword" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
