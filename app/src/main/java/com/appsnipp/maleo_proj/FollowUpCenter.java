@@ -42,7 +42,6 @@ public class FollowUpCenter extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseUsers;
     private Button add_scale;
-    ArrayList<Scale> stat_list = new ArrayList<Scale>();
     ;
     Object[] weight_list = new Object[25];
     Object[] headc_list = new Object[25];
@@ -112,22 +111,30 @@ public class FollowUpCenter extends AppCompatActivity {
                     ref.child(currentId).child("children").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            stat_list.clear();
+                            Scale[] stat_list = new Scale[25];
                             for (DataSnapshot ds : snapshot.child(name).child("scales").getChildren()) {
                                 Scale s = ds.getValue(Scale.class);
                                 if (s != null)
-                                    stat_list.add(s);
+                                    stat_list[s.getAdj_age()] = s ;
                             }
 
-                            int i = 0;
-                            for (Scale s : stat_list) {
-                                if (s != null) {
-                                    length_list[i] = s.getHeight();
-                                    weight_list[i] = s.getWeight();
-                                    headc_list[i] = s.getHead();
-                                    i++;
+                            for(int i = 0; i < 25; i++){
+                                if(stat_list[i] != null){
+                                    length_list[i] = stat_list[i].getHeight();
+                                    weight_list[i] = stat_list[i].getWeight();
+                                    headc_list[i] = stat_list[i].getHead();
                                 }
                             }
+
+//                            int i = 0;
+//                            for (Scale s : stat_list) {
+//                                if (s != null) {
+//                                    length_list[i] = s.getHeight();
+//                                    weight_list[i] = s.getWeight();
+//                                    headc_list[i] = s.getHead();
+//                                    i++;
+//                                }
+//                            }
 
                             Log.v("mug", String.valueOf(gender));
 
