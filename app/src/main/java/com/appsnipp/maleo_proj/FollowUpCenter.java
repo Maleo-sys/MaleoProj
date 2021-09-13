@@ -29,6 +29,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class FollowUpCenter extends AppCompatActivity {
@@ -75,19 +77,25 @@ public class FollowUpCenter extends AppCompatActivity {
             ref0.child(currentId).child("children").orderByChild("name").limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Log.v("mug3", String.valueOf(snapshot));
                     if(snapshot.getValue(Baby.class) == null){
+                        Log.v("mug2", String.valueOf("here"));
                         Toast.makeText(FollowUpCenter.this, "נדרש להוסיף תינוק", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         return;
                     }
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        if (name == null) {
-                            name = (String) ds.getValue(Baby.class).getName();
-                        }
-                        if (gender == null) {
-                            gender = (String) ds.getValue(Baby.class).getGender();
-                        }
+                    Map<String, Object> td = (HashMap<String, Object>) snapshot.getValue();
+                    Log.v("mug2", String.valueOf(snapshot));
+                    String[] keys = td.keySet().toArray(new String[0]);
+                    Map<String, String> key = (HashMap <String, String>) td.get(keys[0]);
+                    if (name == null) {
+                        name = key.get("name");
                     }
+                    if (gender == null) {
+                        gender = key.get("gender");
+                    }
+                    Log.v("mug2", String.valueOf(name));
+
 
 
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
@@ -110,6 +118,8 @@ public class FollowUpCenter extends AppCompatActivity {
                                     i++;
                                 }
                             }
+
+                            Log.v("mug", String.valueOf(gender));
 
                             // Initialize and assign variable
                             BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
