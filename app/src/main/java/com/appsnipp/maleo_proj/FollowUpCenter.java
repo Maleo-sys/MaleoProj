@@ -72,18 +72,21 @@ public class FollowUpCenter extends AppCompatActivity {
             String currentId = currentUser.getUid();
 
             DatabaseReference ref0 = FirebaseDatabase.getInstance().getReference("users");
-            ref0.child(currentId).child("children").orderByChild("name").limitToFirst(1).addValueEventListener(new ValueEventListener() {
+            ref0.child(currentId).child("children").orderByChild("name").limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.getValue(Baby.class) == null){
+                        Toast.makeText(FollowUpCenter.this, "נדרש להוסיף תינוק", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        return;
+                    }
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        Log.v("mug2", String.valueOf(ds));
                         if (name == null) {
-                            name = ds.getValue(Baby.class).getName();
+                            name = (String) ds.getValue(Baby.class).getName();
                         }
                         if (gender == null) {
-                            gender = ds.getValue(Baby.class).getGender();
+                            gender = (String) ds.getValue(Baby.class).getGender();
                         }
-                        Log.v("mug2", String.valueOf(name));
                     }
 
 
@@ -107,8 +110,6 @@ public class FollowUpCenter extends AppCompatActivity {
                                     i++;
                                 }
                             }
-
-                            Log.v("mug", String.valueOf(gender));
 
                             // Initialize and assign variable
                             BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
@@ -205,7 +206,7 @@ public class FollowUpCenter extends AppCompatActivity {
                 }
             });
         } else {
-            Toast.makeText(FollowUpCenter.this, "You need to login", Toast.LENGTH_LONG).show();
+            Toast.makeText(FollowUpCenter.this, "נדרש להתחבר", Toast.LENGTH_LONG).show();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 //        Toast.makeText(this, "gender " + gender,
