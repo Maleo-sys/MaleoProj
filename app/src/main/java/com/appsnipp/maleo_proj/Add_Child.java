@@ -27,10 +27,9 @@ import java.util.Objects;
 
 public class Add_Child extends AppCompatActivity {
 
-//    private TextView mTextView;
     private EditText name, week_number_of_birth, head, height, weight;
-//    private Calendar date_of_birth;
     private DatePicker date_of_birth;
+    private int year_of_birth, month_of_birth, day_of_birth;
     private Button submit_child_stats;
 
     private FirebaseAuth firebaseAuth;
@@ -120,8 +119,11 @@ public class Add_Child extends AppCompatActivity {
 
 
 
+        year_of_birth = date_of_birth.getYear();
+        month_of_birth = date_of_birth.getMonth()+1;
+        day_of_birth = date_of_birth.getDayOfMonth();
 
-        Baby baby = new Baby(name_string,gender_string,week_int, date_of_birth);
+        Baby baby = new Baby(name_string,gender_string,week_int, year_of_birth, month_of_birth, day_of_birth);
         Scale first_scale = new Scale(baby.getAdj_age(), weight_double, height_double, head_double);
 
         /**

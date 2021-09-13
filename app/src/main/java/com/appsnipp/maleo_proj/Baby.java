@@ -11,7 +11,6 @@ public class Baby {
     private int age_by_week;
     private int week_number_of_birth;
     private int adj_age;
-    private DatePicker birth_date;
     private int year_of_birth,month_of_birth,day_of_birth;
     private ArrayList<Scale> scales = new ArrayList<Scale>();
 
@@ -20,16 +19,13 @@ public class Baby {
     }
 
     //send data at register
-    public Baby(String name, String gender, int week_number_of_birth, DatePicker birth_date){
+    public Baby(String name, String gender, int week_number_of_birth,  int year_of_birth, int month_of_birth, int day_of_birth){
         this.name = name;
         this.gender = gender;
         this.week_number_of_birth = week_number_of_birth;
-//        this.scales.add(first_scale);
-
-        this.birth_date = birth_date;
-        this.year_of_birth = birth_date.getYear();
-        this.month_of_birth = birth_date.getMonth()+1;
-        this.day_of_birth = birth_date.getDayOfMonth();
+        this.year_of_birth = year_of_birth;
+        this.month_of_birth = month_of_birth;
+        this.day_of_birth = day_of_birth;
 
 //        calc of adj age and age by week
         Calendar today = Calendar.getInstance();
@@ -51,7 +47,6 @@ public class Baby {
         this.month_of_birth = month_of_birth+1;
         this.day_of_birth = day_of_birth;
 
-
         /**
          * Calculation of adjusted age.
          * chronological age minus the number of weeks s\he was born early.
@@ -62,7 +57,7 @@ public class Baby {
                 + ((today.get(Calendar.MONTH)+1 - this.month_of_birth) * 30)
                 + (today.get(Calendar.DAY_OF_MONTH) - this.day_of_birth);
         this.age_by_week = age_by_days / 7;
-        this.adj_age = Math.max(0 , age_by_week - (40 - this.week_number_of_birth));
+        this.adj_age = age_by_week - (40 - this.week_number_of_birth);
     }
 
 
@@ -105,6 +100,42 @@ public class Baby {
 
     public void AddScale(Scale scale){
         this.scales.add(scale);
+    }
+
+    public int getDay_of_birth() {
+        return day_of_birth;
+    }
+
+    public int getMonth_of_birth() {
+        return month_of_birth;
+    }
+
+    public int getWeek_number_of_birth() {
+        return week_number_of_birth;
+    }
+
+    public int getYear_of_birth() {
+        return year_of_birth;
+    }
+
+    public void setDay_of_birth(int day_of_birth) {
+        this.day_of_birth = day_of_birth;
+    }
+
+    public void setMonth_of_birth(int month_of_birth) {
+        this.month_of_birth = month_of_birth;
+    }
+
+    public void setScales(ArrayList<Scale> scales) {
+        this.scales = scales;
+    }
+
+    public void setWeek_number_of_birth(int week_number_of_birth) {
+        this.week_number_of_birth = week_number_of_birth;
+    }
+
+    public void setYear_of_birth(int year_of_birth) {
+        this.year_of_birth = year_of_birth;
     }
 
 }
