@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -15,10 +16,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.sanojpunchihewa.glowbutton.GlowButton;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
@@ -39,6 +42,12 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
@@ -204,30 +213,88 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void DisplayMeasurementsDialog(View view) {
-        new FancyGifDialog.Builder(this)
-                .setTitle("מדדים עדכניים:")
-                .setMessage("גיל מתוקן: 0.2 שנים\nמשקל: 940 גרם\nהיקף ראש: 35 סנטימטר\nעדכון אחרון: 39 ימים")
-                .setNegativeBtnText("יותר מאוחר")
-                .setPositiveBtnBackground(R.color.gradientLightYellow2)
-                .setPositiveBtnText("הצג\\עדכן")
-                .setNegativeBtnBackground(R.color.gradientLightGreen)
-                .setGifResource(R.drawable.measurements)
-                .isCancellable(true)
-                .OnPositiveClicked(new FancyGifDialogListener() {
-                    @Override
-                    public void OnClick() {
-                        startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser == null) {
+                return;
+            }
+            String currentId = currentUser.getUid();
 
+            DatabaseReference ref0 = FirebaseDatabase.getInstance().getReference("users");
+            ref0.child(currentId).child("children").orderByChild("name").limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Log.v("mug3", String.valueOf(snapshot));
+                    if(snapshot.getValue(Baby.class) == null){
+                        Log.v("mug2", String.valueOf("here"));
+                        Toast.makeText(MainActivity.this, "נדרש להוסיף תינוק", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        return;
                     }
-                })
-                .OnNegativeClicked(new FancyGifDialogListener() {
-                    @Override
-                    public void OnClick() {
+                    Map<String, Object> td = (HashMap<String, Object>) snapshot.getValue();
+                    Log.v("mug2", String.valueOf(snapshot));
+                    String[] keys = td.keySet().toArray(new String[0]);
+                    Map<String, String> key = (HashMap <String, String>) td.get(keys[0]);
+                    if (name == null) {
+                        name = key.get("name");
                     }
-                })
+                    if (gender == null) {
+                        gender = key.get("gender");
+                    }
+                    Log.v("mug2", String.valueOf(name));
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+            Query refi = ref.child(currentId).child("children").orderByChild("scales").equalTo(name);
+            ref.child(currentId).child("children").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Scale stat = null;
+                    int current = 100;
+                    for (DataSnapshot ds : snapshot.child(name).child("scales").getChildren()) {
+                        Scale s = ds.getValue(Scale.class);
+                        if (s != null && s.getAdj_age() < current){
+                            stat = s;
+                            current = s.getAdj_age();
+                        }
+                    }
+                    new FancyGifDialog.Builder(MainActivity.this)
+                            .setTitle("מדדים עדכניים:")
+                            .setMessage(" גיל מתוקן: " + stat.getAdj_age() + " שנים " + " \n " + " משקל: " + stat.getWeight() + " קילוגרם \n " + " גובה: " + stat.getHeight() +  " סנטימטר \n " + " היקף ראש: " + stat.getHead() + " סנטימטר\n ")
+//                            .setMessage("גיל מתוקן: 0.2 שנים\nמשקל: 940 גרם\nהיקף ראש: 35 סנטימטר\nעדכון אחרון: 39 ימים")
+                            .setNegativeBtnText("יותר מאוחר")
+                            .setPositiveBtnBackground(R.color.gradientLightYellow2)
+                            .setPositiveBtnText("הצג\\עדכן")
+                            .setNegativeBtnBackground(R.color.gradientLightGreen)
+                            .setGifResource(R.drawable.measurements)
+                            .isCancellable(true)
+                            .OnPositiveClicked(new FancyGifDialogListener() {
+                                @Override
+                                public void OnClick() {
+                                    startActivity(new Intent(getApplicationContext(), FollowUpCenter.class));
 
-                .build();
-    }
+                                }
+                            })
+                            .OnNegativeClicked(new FancyGifDialogListener() {
+                                @Override
+                                public void OnClick() {
+                                }
+                            })
+
+                            .build();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });}}
 
     //    endof Dialogs Zone
     public void DisplayNotifications(View view) {
@@ -319,6 +386,11 @@ public class MainActivity extends AppCompatActivity {
                 })
 
                 .build();
+    }
+
+    private String log(String gen) {
+        Log.v("score", String.valueOf(gen));
+        return gen;
     }
 
 }
