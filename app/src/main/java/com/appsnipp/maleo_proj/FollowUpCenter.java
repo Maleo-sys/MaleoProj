@@ -26,6 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class FollowUpCenter extends AppCompatActivity {
     private AAChartView aaChartView;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseUsers;
-
+    private Button add_scale;
     ArrayList<Scale> stat_list = new ArrayList<Scale>();
     ;
     Object[] weight_list = new Object[25];
@@ -65,6 +67,14 @@ public class FollowUpCenter extends AppCompatActivity {
             gender = extras.getString("baby_gender");
         }
 
+        add_scale = findViewById(R.id.add_scale_button);
+
+        add_scale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Add_Scale.class));
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();

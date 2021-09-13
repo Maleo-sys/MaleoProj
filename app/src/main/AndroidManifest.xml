@@ -15,9 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Add_Scale"
+            android:exported="true"
+            android:configChanges="orientation"
+            android:screenOrientation="sensor"
+            android:theme="@android:style/Theme.Dialog"/>
+        <activity
             android:name=".Choose_Child"
-            android:exported="true"/>
-        <activity android:name=".Add_Child"/>
+            android:exported="true" />
+        <activity android:name=".Add_Child" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />

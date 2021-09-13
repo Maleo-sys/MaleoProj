@@ -8,6 +8,21 @@
     android:fadingEdgeLength="10dp"
     tools:context="com.appsnipp.maleo_proj.FollowUpCenter">
 
+    <Button
+        android:id="@+id/add_scale_button"
+        android:layout_width="82dp"
+        android:layout_height="33dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button1_bg"
+        android:text="מדידה חדשה"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/followup_nav"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <include
         android:id="@+id/include"
