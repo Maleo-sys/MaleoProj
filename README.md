@@ -53,6 +53,6 @@ this class's responsible is to add another baby to the firebase.
 ![](https://github.com/Maleo-sys/MaleoProj/blob/main/pictures/Screenshot%202021-09-13%20155153.png)
 
 ## AAchartModel
-We used AAchartModel to draw the graphs, for more information please check https://github.com/AAChartModel/AAChartCore
+We used AAchartModel to draw the graphs, for more information please check - https://github.com/AAChartModel/AAChartCore
 
 # MaleoProj
